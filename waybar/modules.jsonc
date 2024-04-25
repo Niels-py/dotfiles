@@ -1,0 +1,97 @@
+{
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "一",
+            "2": "二",
+            "3": "三",
+            "4": "四",
+            "5": "五",
+            "6": "六",
+            "7": "七",
+            "8": "八",
+            "9": "九",
+            "10": "十"
+        },
+    },
+    "tray":{
+		"icon-size":18,
+		"spacing": 10
+	},
+    "clock": {
+        "interval": 1,
+        "tooltip": true,
+        "format": "{:%H:%M:%S}",
+        "tooltip-format": "{:%d.%m.%Y}",
+    },
+    "cpu": {
+        "interval": 1,
+        "format": " {}%",
+        "max-length": 10
+    },
+    "memory": {
+        "interval": 1,
+        "format": " {}%",
+        "max-length": 10
+    },
+    "hyprland/window": {
+        "format": "{class}",
+        "rewrite": {
+            "Firefox": " Firefox",
+            "Alacritty": " Alacritty",
+            "org.pwmt.zathura": " Zathura",
+            "thunar": " Thunar",
+            "mpv": "󰎁 mpv",
+            "Tor Browser": " Tor Browser",
+            "obsidian": " Obsidian",
+        },
+        "separate-outputs": true
+    },
+    "wireplumber": {
+        "format": "{volume}% {icon}",
+        "format-muted": "󰝟",
+        "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
+        "format-icons": ["", "", ""],
+        "on-scroll-up": "if awk -v num=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2}') 'BEGIN { exit !(num < 1) }'; then wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+; fi",
+        "on-scroll-down": "if awk -v num=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2}') 'BEGIN { exit !(num > 0) }'; then wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; fi",
+        "max-volume": 100.0,
+    },
+    "mpris": {
+        "format": " {status_icon} {player_icon}{dynamic} ",
+        // "interval": 1,
+        // "dynamic-order": ["artist", "title", "position", "length"],
+        "dynamic-order": ["artist", "title"],
+        "dynamic-separator": " - ",
+        "title-len": 50,
+        "dynamic-importance-order": ["title", "position", "length", "artist", "album"],
+        "on-click-middle": "playerctl play-pause",
+        "status-icons": {
+            "playing": " ",
+            "paused": " ",
+            "stopped": " ",
+        },
+        "player-icons": {
+            "defualt": "...",
+            "firefox": " ",
+            "mpd": " ",
+            "mpv": "󰎁 ",
+        },
+        // "on-click-right": "playerctl next",
+        // "on-click-left": "playerctl previous",
+        // "ignored-players": ["firefox"]
+    }, 
+    "network": {
+        "format": " : {bandwidthDownBytes} /  : {bandwidthUpBytes}",
+        "interval": 1,
+        "max-length": 50
+    },
+    "cava": {
+        "cava_config": "$XDG_CONFIG_HOME/cava/config",
+        "noise_reduction": 0.77,
+        "input_delay": 2,
+        "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+        "actions": {
+            "on-click-right": "mode"
+        }
+    },
+}
