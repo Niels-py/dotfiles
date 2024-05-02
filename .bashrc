@@ -44,6 +44,7 @@ alias spotdl="~/Documents/dev/python-venv/bin/spotdl --preload --format mp3"
 alias wget='wget --no-hsts'
 
 alias kali="docker run --tty --interactive --privileged --rm kalilinux/kali-rolling"
+
 alias poweroff="loginctl poweroff"
 alias reboot="loginctl reboot"
 alias zzz="loginctl suspend"
@@ -51,6 +52,7 @@ alias ZZZ="loginctl hibernate"
 alias ..="z .."
 alias ...="z ../.."
 alias ....="z ../../.."
+alias cd="z"
 
 FZF_DEFAULT_OPTS='--preview "bat --style=full --color=always {}" --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8,fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc,marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8'
 FZF_DEFAULT_COMMAND="fd --type f"
