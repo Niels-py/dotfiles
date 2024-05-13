@@ -1,13 +1,14 @@
 @import "mocha.css";
 
 * {
-    font-family: JetBrainsMono Nerd Font;
-    font-size: 20px;
+  font-family: JetBrainsMono Nerd Font;
+  font-size: 22px;
 }
 
 window#waybar {
-    color: @base;
-    background-color: transparent;
+  color: @text;
+  background-color: @crust;
+  border-bottom: 4px solid @mauve;
 }
 
 #clock,
@@ -22,124 +23,101 @@ window#waybar {
 #idle_inhibitor,
 #mpris,
 #mpd {
-    padding: 0 10px;
-    border-radius: 32px;
-    margin: 12px 8px 4px 8px;
+  padding: 0 10px;
+  margin: 4px 4px 8px 4px;
+  background-color: @base;
 }
 
 #window,
-#workspaces {
-    color: @text;
-    background-color: @crust;
-    border-radius: 32px;
-    margin: 12px 8px 4px 8px;
+#workspaces,
+#tags {
+  color: @text;
+  background-color: @base;
+  margin: 4px 0 8px 0;
 }
 
 @keyframes blink {
-    0% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.2;
-    }
-    100% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 #window {
-    padding: 0 1em
-}
-window#waybar.empty #window {
-    background-color: transparent;
+  padding: 0 1em;
 }
 
-#workspaces button {
-    padding: 0 1em;
-    border-radius: 32px;
+#tags button:hover {
+  background-color: @sky;
+  animation: blink 1s infinite;
 }
-#workspaces button.empty {
-    color: @surface0;
+#tags button {
+  padding: 0 0.7em;
+  color: @surface0;
 }
-#workspaces button.visible {
-    color: @blue;
+#tags button.occupied {
+  color: @blue;
 }
-#workspaces button.active {
-    color: @green;
+#tags button.focused {
+  color: @green;
 }
-#workspaces button.urgent {
-    color: @red;
-    animation: blink 1s infinite;
+#tags button.urgent {
+  color: @red;
+  animation: blink 1s infinite;
 }
 
 #clock {
-    background-color: @red;
+  color: @red;
+  border-right: 0;
 }
 
 #cpu {
-    background-color: @green;
-    min-width: 100px;
+  color: @green;
+  min-width: 100px;
 }
 
 #memory {
-    background-color: @flamingo;
-    min-width: 100px;
+  color: @flamingo;
+  min-width: 100px;
 }
 
 /* #disk { */
-/*     background-color: #964B00; */
+/*     color: #964B00; */
 /* } */
 
 #network {
-    background-color: @sapphire;
-    min-width: 350px;
+  color: @sapphire;
+  min-width: 350px;
 }
 
 #network.disconnected {
-    background-color: @blue;
+  color: @blue;
 }
 
 #wireplumber {
-    background-color: @pink;
-    min-width: 80px;
+  color: @pink;
+  min-width: 80px;
 }
 
 #wireplumber.muted {
-    background-color: @mauve;
-    min-width: 80px;
+  color: @mauve;
+  min-width: 80px;
 }
 
 #mpris {
-    background-color: @teal;
-    min-width: 100px;
+  color: @teal;
+  min-width: 100px;
 }
 
 /* #temperature { */
-/*     background-color: #f0932b; */
+/*     color: #f0932b; */
 /* } */
 
 /* #temperature.critical { */
-/*     background-color: #eb4d4b; */
+/*     color: #eb4d4b; */
 /* } */
-
-#tray {
-    background-color: #2980b9;
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
-}
-
-#idle_inhibitor {
-    background-color: #2d3436;
-}
-
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
-}
