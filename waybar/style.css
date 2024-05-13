@@ -24,7 +24,7 @@ window#waybar {
 #mpris,
 #mpd {
   padding: 0 10px;
-  margin: 4px 4px 8px 4px;
+  margin: 6px 4px 10px 4px;
   background-color: @base;
 }
 
@@ -33,7 +33,7 @@ window#waybar {
 #tags {
   color: @text;
   background-color: @base;
-  margin: 4px 0 8px 0;
+  margin: 6px 0 10px 0;
 }
 
 @keyframes blink {
