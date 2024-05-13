@@ -3,14 +3,19 @@
 * {
   font-family: JetBrainsMono Nerd Font;
   font-size: 22px;
+  padding: 0;
+  margin: 0;
 }
 
 window#waybar {
   color: @text;
   background-color: @crust;
-  border-bottom: 4px solid @mauve;
+  /* border-bottom: 4px solid @mauve; */
 }
 
+#window,
+#workspaces,
+#tags,
 #clock,
 #cpu,
 #memory,
@@ -23,17 +28,9 @@ window#waybar {
 #idle_inhibitor,
 #mpris,
 #mpd {
+  background-color: @base;
+  margin: 4px 2px;
   padding: 0 10px;
-  margin: 6px 4px 10px 4px;
-  background-color: @base;
-}
-
-#window,
-#workspaces,
-#tags {
-  color: @text;
-  background-color: @base;
-  margin: 6px 0 10px 0;
 }
 
 @keyframes blink {
@@ -52,6 +49,11 @@ window#waybar {
   padding: 0 1em;
 }
 
+#tags {
+  margin: 4px 4px 4px 2px;
+  padding: 0;
+}
+
 #tags button:hover {
   background-color: @sky;
   animation: blink 1s infinite;
@@ -61,7 +63,7 @@ window#waybar {
   color: @surface0;
 }
 #tags button.occupied {
-  color: @blue;
+  color: @text;
 }
 #tags button.focused {
   color: @green;
@@ -73,7 +75,7 @@ window#waybar {
 
 #clock {
   color: @red;
-  border-right: 0;
+  margin: 4px 4px 4px 2px;
 }
 
 #cpu {
