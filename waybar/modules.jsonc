@@ -46,7 +46,7 @@
     },
     "river/window": {
         "format": "{}",
-        "max-length": 30,
+        "max-length": 80,
     },
     "tray":{
 		"icon-size":18,
@@ -83,7 +83,7 @@
         // "dynamic-order": ["artist", "title", "position", "length"],
         "dynamic-order": ["artist", "title"],
         "dynamic-separator": " - ",
-        "title-len": 50,
+        "title-len": 80,
         "dynamic-importance-order": ["title", "position", "length", "artist", "album"],
         "on-click-middle": "playerctl play-pause",
         "status-icons": {
@@ -92,7 +92,7 @@
             "stopped": " ",
         },
         "player-icons": {
-            "defualt": "...",
+            "default": "...",
             "firefox": " ",
             "mpd": " ",
             "mpv": "󰎁 ",

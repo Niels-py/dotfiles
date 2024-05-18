@@ -9,7 +9,8 @@
 
 window#waybar {
   color: @text;
-  background-color: @crust;
+  /* background-color: @crust; */
+  background-color: transparent;
   /* border-bottom: 4px solid @mauve; */
 }
 
@@ -29,8 +30,9 @@ window#waybar {
 #mpris,
 #mpd {
   background-color: @base;
-  margin: 4px 2px;
+  margin: 8px 4px 0 4px;
   padding: 0 10px;
+  /* border-radius: 4px; */
 }
 
 @keyframes blink {
@@ -47,10 +49,11 @@ window#waybar {
 
 #window {
   padding: 0 1em;
+  margin: 8px 8px 0 4px;
 }
 
 #tags {
-  margin: 4px 4px 4px 2px;
+  margin: 8px 4px 0 8px;
   padding: 0;
 }
 
@@ -75,7 +78,7 @@ window#waybar {
 
 #clock {
   color: @red;
-  margin: 4px 4px 4px 2px;
+  margin: 8px 8px 0 4px;
 }
 
 #cpu {
@@ -94,7 +97,7 @@ window#waybar {
 
 #network {
   color: @sapphire;
-  min-width: 350px;
+  min-width: 400px;
 }
 
 #network.disconnected {

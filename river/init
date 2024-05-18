@@ -1,55 +1,38 @@
-#!/bin/sh
+#!/bin/bash
 
 # ENVIRONMENT
 # =========================================
-EDITOR=nvim
-VISUAL=nvim
-TERM=alacritty
+export EDITOR=nvim
+export VISUAL=nvim
+export TERM=foot
 
-XDG_CONFIG_HOME=$HOME/.config/
-XDG_CACHE_HOME=$HOME/.cache/
-XDG_DATA_HOME=$HOME/.local/share/
-XDG_STATE_HOME=$HOME/.local/state/
-XDG_DATA_DIRS=/usr/local/share/:/usr/share/
-XDG_CONFIG_DIRS=/etc/xdg/
-CARGO_HOME=$HOME/.local/share/cargo/
-RUSTUP_HOME=$HOME/.local/share/rustup/
-GRIM_DEFAULT_DIR=$HOME/Pictures/screenshots/
-GOPATH=$HOME/.local/share/go
+export XDG_CONFIG_HOME=$HOME/.config/
+export XDG_CACHE_HOME=$HOME/.cache/
+export XDG_DATA_HOME=$HOME/.local/share/
+export XDG_STATE_HOME=$HOME/.local/state/
+export XDG_DATA_DIRS=/usr/local/share/:/usr/share/
+export XDG_CONFIG_DIRS=/etc/xdg/
+export CARGO_HOME=$HOME/.local/share/cargo/
+export RUSTUP_HOME=$HOME/.local/share/rustup/
+export GRIM_DEFAULT_DIR=$HOME/Pictures/screenshots/
+export GOPATH=$HOME/.local/share/go
 
 # themes
-XCURSOR_THEME=Bibata-Modern-Classic
-XCURSOR_SIZE=32
-QT_QPA_PLATFORMTHEME=qt5ct
-QT_STYLE_OVERRIDE=kvantum
-QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-GDK_SCALE=2
+export XCURSOR_THEME=Bibata-Modern-Classic
+export XCURSOR_SIZE=32
+export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_STYLE_OVERRIDE=kvantum
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+export GDK_SCALE=2
 
 # wayland
-MOZ_ENABLE_WAYLAND=1
-WLR_RENDERER=vulkan
-QT_QPA_PLATFORM=wayland
-SDL_VIDEODRIVER=wayland
-GDK_BACKEND=wayland
-ELECTRON_OZONE_PLATFORM_HINT=auto
-
-
-# EXECUTE
-# =========================================
-source '/home/niels/.local/share/cargo/env'
-
-pipewire &
-mpd &
-transmission-daemon &
-syncthing --no-browser &
-mpDris2 &
-
-hyprpaper &
-
-wl-paste --watch cliphist store &
-$(sleep 1; waybar) &
-# swww-daemon &
-mako &
+export MOZ_ENABLE_WAYLAND=1
+export WLR_RENDERER=vulkan
+export QT_QPA_PLATFORM=wayland
+export SDL_VIDEODRIVER=wayland
+export GDK_BACKEND=wayland
+export ELECTRON_OZONE_PLATFORM_HINT=auto
+export OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models
 
 
 # basic commmand
@@ -60,7 +43,8 @@ riverctl map normal Super Space toggle-float
 
 # spawn programms
 # =========================================
-riverctl map normal Super Return spawn alacritty
+riverctl map normal Super Return spawn footclient
+riverctl map normal Super Z spawn 'footclient zellij'
 riverctl map normal Super W spawn firefox
 riverctl map normal Super+Shift W spawn 'firefox --private-window'
 riverctl map normal Super R spawn fuzzel
@@ -82,7 +66,7 @@ riverctl map normal Super Comma focus-output previous
 riverctl map normal Super+Shift Period send-to-output next
 riverctl map normal Super+Shift Comma send-to-output previous
 
-# focus window on top of stack
+# move window to top of stack
 riverctl map normal Super T zoom
 
 riverctl map -repeat normal Super H send-layout-cmd rivertile "main-ratio -0.05"
@@ -147,16 +131,19 @@ riverctl map normal Super Left  send-layout-cmd rivertile "main-location left"
 # =========================================
 riverctl map -repeat normal None XF86AudioRaiseVolume  spawn "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
 riverctl map -repeat normal None XF86AudioLowerVolume  spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-riverctl map normal None XF86AudioMute         spawn "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-riverctl map normal None XF86AudioPlay  spawn 'playerctl play-pause'
-riverctl map normal None XF86AudioPrev  spawn 'playerctl previous'
-riverctl map normal None XF86AudioNext  spawn 'playerctl next'
+riverctl map normal None XF86AudioMute spawn "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+riverctl map normal None XF86AudioPlay spawn 'playerctl play-pause'
+riverctl map normal None XF86AudioPrev spawn 'playerctl previous'
+riverctl map normal None XF86AudioNext spawn 'playerctl next'
 
 
 # Functions
 # =========================================
 
 # TODO: Screenshot
+
+# TODO: Tesseract text copy
+riverctl map normal Super+Shift T spawn 'grim -g "$(slurp)" - | tesseract-ocr stdin stdout | wl-copy notify-send -t 3000 -u low "Textshot" "$(wl-paste)"'
 
 
 # Output
@@ -168,7 +155,7 @@ wlr-randr --output HDMI-A-1 --mode 1920x1080 --pos 0,0 --transform 90 --scale 0.
 # =========================================
 riverctl background-color 0x11111b
 riverctl border-color-focused 0xcba6f7
-riverctl border-color-unfocused 0x313244
+jiverctl border-color-unfocused 0x313244
 riverctl border-color-urgent 0xf38ba8
 riverctl border-width 4
 
@@ -192,6 +179,38 @@ riverctl xcursor-theme Bibata-Modern-Classic 32
 # =========================================
 riverctl rule-add -app-id "bar" csd
 riverctl rule-add -app-id 'float*' -title 'foo' float
+
+
+# EXECUTE
+# =========================================
+source '/home/niels/.local/share/cargo/env'
+
+killall pipewire
+pipewire &
+
+killall mpd
+mpd &
+
+killall transmission-daemon
+transmission-daemon &
+
+killall syncthing
+syncthing --no-browser &
+
+killall mpDris2
+mpDris2 &
+
+wl-paste --watch cliphist store &
+$(sleep 1; waybar) &
+mako &
+foot -s &
+
+# swayidle -w \
+#     timeout 1200 'wlr-randr --output HDMI-A-1 --off && wlr-randr --output DP-2 --off' \
+#     resume 'wlr-randr --output DP-2 --on && wlr-randr --output DP-2 --mode 3840x2160 --pos 1440,0 && wlr-randr --output HDMI-A-1 --on && wlr-randr --output HDMI-A-1 --mode 1920x1080 --pos 0,0 --transform 90 --scale 0.75' &
+swayidle -w \
+    timeout 1200 'notify-send "Swayidle" "going to sleep in 10min"' \
+    timeout 1800 'zzz' &
 
 
 # Layout generator

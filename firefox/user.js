@@ -14,7 +14,7 @@ user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
  *    2 = last visited page
  *    3 = resume previous session
  */
-user_pref("browser.startup.page",  1);
+user_pref("browser.startup.page", 1);
 user_pref("browser.startup.homepage", "about:home");
 
 // disable activity stream on new windows and tab pages
@@ -24,30 +24,37 @@ user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false); // disab
 user_pref("browser.newtabpage.activity-stream.telemetry", false); // disable telemetry
 user_pref("browser.newtabpage.activity-stream.feeds.snippets", false);
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
-user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
-user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", false);
+user_pref(
+  "browser.newtabpage.activity-stream.section.highlights.includePocket",
+  false,
+);
+user_pref(
+  "browser.newtabpage.activity-stream.feeds.discoverystreamfeed",
+  false,
+);
 user_pref("browser.newtabpage.activity-stream.showSponsored", false); // Pocket -> Sponsored Stories
 user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // Sponsored Shortcuts
 user_pref("browser.newtabpage.activity-stream.default.sites", "");
-
 
 /*********************************************************************
  * Geolocation
  *********************************************************************/
 
 // use Mozilla geolocation service instead of Google if permission is granted
-user_pref("geo.provider.network.url", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
+user_pref(
+  "geo.provider.network.url",
+  "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%",
+);
 
 // disable using the OS’s geolocation service
 //user_pref("geo.provider.ms-windows-location", false); // Windows
 //user_pref("geo.provider.use_corelocation", false);    // macOS
-user_pref("geo.provider.use_gpsd", false);              // Linux
-user_pref("geo.provider.use_geoclue", false);           // Linux
+user_pref("geo.provider.use_gpsd", false); // Linux
+user_pref("geo.provider.use_geoclue", false); // Linux
 
 // disable region updates
 user_pref("browser.region.network.url", "");
 user_pref("browser.region.update.enabled", false);
-
 
 /*********************************************************************
  * Language / Locale
@@ -57,20 +64,18 @@ user_pref("browser.region.update.enabled", false);
 user_pref("intl.accept_languages", "en-US, en");
 user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
 
-
 /*********************************************************************
  * Auto-updates / Recommendations
  *********************************************************************/
 
 // disable auto-installing Firefox updates
 //user_pref("app.update.background.scheduling.enabled", false); // Windows
-user_pref("app.update.auto", false);                            // Non-Windows
+user_pref("app.update.auto", false); // Non-Windows
 
 // disable addons recommendations (use Google Analytics)
 user_pref("extensions.getAddons.showPane", false); // [HIDDEN PREF]
 user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
 user_pref("browser.discovery.enabled", false);
-
 
 /*********************************************************************
  * Telemetry
@@ -94,7 +99,6 @@ user_pref("toolkit.coverage.endpoint.base.", "");
 user_pref("browser.ping-centre.telemetry", false);
 user_pref("beacon.enabled", false);
 
-
 /*********************************************************************
  * Studies
  *********************************************************************/
@@ -106,7 +110,6 @@ user_pref("app.shield.optoutstudies.enabled", false);
 user_pref("app.normandy.enabled", false);
 user_pref("app.normandy.api_url", "");
 
-
 /*********************************************************************
  * Crash Reports
  *********************************************************************/
@@ -114,7 +117,6 @@ user_pref("app.normandy.api_url", "");
 // disable crash reports
 user_pref("breakpad.reportURL", "");
 user_pref("browser.tabs.crashReporting.sendReport", false);
-
 
 /*********************************************************************
  * Captive Portal Detection / Network Checks
@@ -126,7 +128,6 @@ user_pref("network.captive-portal-service.enabled", false);
 
 // disable network connections checks
 user_pref("network.connectivity-service.enabled", false);
-
 
 /*********************************************************************
  * Safe Browsing
@@ -152,12 +153,14 @@ user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 user_pref("browser.safebrowsing.downloads.remote.url", "");
 
 // disable checks for unwanted software
-user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false);
+user_pref(
+  "browser.safebrowsing.downloads.remote.block_potentially_unwanted",
+  false,
+);
 user_pref("browser.safebrowsing.downloads.remote.block_uncommon", false);
 
 // disable bypasses the block of safe browsing with a click for current session
 user_pref("browser.safebrowsing.allowOverride", false);
-
 
 /*********************************************************************
  * Network: DNS, Proxy, IPv6
@@ -193,7 +196,6 @@ user_pref("permissions.manager.defaultsUrl", "");
 // use Punycode in Internationalized Domain Names to eliminate possible spoofing
 user_pref("network.IDN_show_punycode", true);
 
-
 /*********************************************************************
  * Search Bar: Suggestions, Autofill
  *********************************************************************/
@@ -201,7 +203,6 @@ user_pref("network.IDN_show_punycode", true);
 // disable search suggestions
 user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.urlbar.suggest.searches", false);
-
 
 // disable location bar domain guessing
 user_pref("browser.fixup.alternate.enabled", false);
@@ -226,7 +227,6 @@ user_pref("browser.urlbar.quicksuggest.enabled", false);
 user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
 user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
 
-
 /*********************************************************************
  * Passwords
  *********************************************************************/
@@ -247,7 +247,6 @@ user_pref("signon.formlessCapture.enabled", false);
  *    2 = allow sub-resources to open HTTP authentication credentials dialogs (default)
  */
 user_pref("network.auth.subresource-http-auth-allow", 1);
-
 
 /*********************************************************************
  * HTTPS / SSL/TLS / OSCP / CERTS
@@ -289,7 +288,6 @@ user_pref("security.cert_pinning.enforcement_level", 2);
 user_pref("security.remote_settings.crlite_filters.enabled", true);
 user_pref("security.pki.crlite_mode", 2);
 
-
 /*********************************************************************
  * Headers / Referers
  *********************************************************************/
@@ -309,7 +307,6 @@ user_pref("network.http.referer.XOriginPolicy", 2);
  *    2 = scheme+host+port:         https://example.com:8888
  */
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
-
 
 /*********************************************************************
  * Audio/Video: WebRTC, WebGL
@@ -340,8 +337,7 @@ user_pref("webgl.disabled", false);
 user_pref("media.autoplay.default", 5);
 
 // disable DRM Content
-user_pref("media.eme.enabled", false);
-
+user_pref("media.eme.enabled", true);
 
 /*********************************************************************
  * Downloads
@@ -350,7 +346,6 @@ user_pref("media.eme.enabled", false);
 // always ask you where to save files:
 user_pref("browser.download.useDownloadDir", true);
 user_pref("browser.download.manager.addToRecentDocs", true);
-
 
 /*********************************************************************
  * Cookies
@@ -366,9 +361,14 @@ user_pref("browser.contentblocking.category", "strict");
 user_pref("privacy.partition.serviceWorkers", true); // Default: true
 
 // enable APS (Always Partitioning Storage)
-user_pref("privacy.partition.always_partition_third_party_non_cookie_storage", true);
-user_pref("privacy.partition.always_partition_third_party_non_cookie_storage.exempt_sessionstorage", false);
-
+user_pref(
+  "privacy.partition.always_partition_third_party_non_cookie_storage",
+  true,
+);
+user_pref(
+  "privacy.partition.always_partition_third_party_non_cookie_storage.exempt_sessionstorage",
+  false,
+);
 
 /*********************************************************************
  * UI Features
@@ -393,6 +393,8 @@ user_pref("pdfjs.enableScripting", false);
 user_pref("privacy.userContext.enabled", true);
 user_pref("privacy.userContext.ui.enabled", true);
 
+// prefers less animation
+user_pref("ui.prefersReducedMotion", 1);
 
 /*********************************************************************
  * Extensions
@@ -408,7 +410,6 @@ user_pref("extensions.webextensions.restrictedDomains", "");
 
 // Display always the installation prompt
 user_pref("extensions.postDownloadThirdPartyPrompt", false);
-
 
 /*********************************************************************
  * Shutdown Settings
@@ -426,7 +427,6 @@ user_pref("privacy.clearOnShutdown.offlineApps", true);
 user_pref("privacy.clearOnShutdown.sessions", false);
 user_pref("privacy.clearOnShutdown.sitesettings", false);
 user_pref("privacy.sanitize.timeSpan", 0);
-
 
 /*********************************************************************
  * Fingerprinting

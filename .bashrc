@@ -1,3 +1,10 @@
+. "/home/niels/.local/share/cargo/env"
+eval "$(starship init bash)"
+eval "$(zoxide init bash)"
+# fortune de | lolcat -h 0.3 -v 2
+pokeget --hide-name random
+
+
 # Use bash-completion, if available
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
     . /usr/share/bash-completion/bash_completion
@@ -31,8 +38,8 @@ alias tree="lsd --tree"
 alias md="mkdir -p"
 alias rm="trash-put"
 
-alias wg-up="sudo wg-quick up de-fra-wg-401.conf"
-alias wg-down="sudo wg-quick down de-fra-wg-401.conf"
+alias wg-up="sudo wg-quick up wg0"
+alias wg-down="sudo wg-quick down wg0"
 
 alias py="python3"
 alias venv=". ~/Documents/dev/python-venv/bin/activate"
@@ -54,8 +61,40 @@ alias ...="z ../.."
 alias ....="z ../../.."
 alias cd="z"
 
-FZF_DEFAULT_OPTS='--preview "bat --style=full --color=always {}" --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8,fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc,marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8'
-FZF_DEFAULT_COMMAND="fd --type f"
+export FZF_DEFAULT_OPTS='--preview "bat --style=full --color=always {}" --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8,fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc,marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8'
+export FZF_DEFAULT_COMMAND="fd --type f"
+
+export EDITOR=nvim
+export VISUAL=nvim
+export TERM=foot
+
+export XDG_CONFIG_HOME=$HOME/.config/
+export XDG_CACHE_HOME=$HOME/.cache/
+export XDG_DATA_HOME=$HOME/.local/share/
+export XDG_STATE_HOME=$HOME/.local/state/
+export XDG_DATA_DIRS=/usr/local/share/:/usr/share/
+export XDG_CONFIG_DIRS=/etc/xdg/
+export CARGO_HOME=$HOME/.local/share/cargo/
+export RUSTUP_HOME=$HOME/.local/share/rustup/
+export GRIM_DEFAULT_DIR=$HOME/Pictures/screenshots/
+export GOPATH=$HOME/.local/share/go
+export OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models
+
+# themes
+export XCURSOR_THEME=Bibata-Modern-Classic
+export XCURSOR_SIZE=32
+export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_STYLE_OVERRIDE=kvantum
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+export GDK_SCALE=2
+
+# wayland
+export MOZ_ENABLE_WAYLAND=1
+export WLR_RENDERER=vulkan
+export QT_QPA_PLATFORM=wayland
+export SDL_VIDEODRIVER=wayland
+export GDK_BACKEND=wayland
+export ELECTRON_OZONE_PLATFORM_HINT=auto
 
 alias imv='imv -u nearest_neighbour'
 
@@ -63,9 +102,3 @@ alias pipes=cpipes
 
 alias nv=nvim
 
-eval "$(starship init bash)"
-eval "$(zoxide init bash)"
-. "/home/niels/.local/share/cargo//env"
-
-# fortune de | lolcat -h 0.3 -v 2
-pokeget --hide-name random

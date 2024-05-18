@@ -4,8 +4,7 @@
     "position": "top",
     "height": 32,
     "output": "DP-2",
-    "modules-left": ["river/tags"],
-    "modules-center": ["river/window"],
+    "modules-left": ["river/tags", "river/window"],
     "modules-right": ["tray", "mpris", "wireplumber", "network", "memory", "cpu", "clock"],
 
 }, {

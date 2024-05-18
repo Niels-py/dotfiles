@@ -1,18 +1,7 @@
-# This is a default config file for bottom.  All of the settings are commented
-# out by default; if you wish to change them uncomment and modify as you see
-# fit.
-
-# This group of options represents a command-line flag/option.  Flags explicitly
-# added when running (ie: btm -a) will override this config file if an option
-# is also set here.
-
 [flags]
 # Whether to hide the average cpu entry.
 #hide_avg_cpu = false
-# Whether to use dot markers rather than braille.
-#dot_marker = false
-# The update rate of the application.
-#rate = "1s"
+rate = 500
 # Whether to put the CPU legend to the left.
 #left_legend = false
 # Whether to set CPU% on a process to be based on the total CPU or just current usage.
@@ -35,7 +24,7 @@
 #temperature_type = "fahrenheit"
 #temperature_type = "celsius"
 # The default time interval (in milliseconds).
-#default_time_value = "60s"
+default_time_value = 30000
 # The time delta on each zoom in/out action (in milliseconds).
 #time_delta = 15000
 # Hides the time scale.
@@ -52,11 +41,9 @@
 # Remove space in tables
 #hide_table_gap = false
 # Show the battery widgets
-#battery = false
+battery = false
 # Disable mouse clicks
 #disable_click = false
-# Built-in themes.  Valid values are "default", "default-light", "gruvbox", "gruvbox-light", "nord", "nord-light"
-#color = "default"
 # Show memory values in the processes widget as values by default
 #mem_as_value = false
 # Show tree mode by default in the processes widget.
@@ -68,22 +55,33 @@
 # Displays the network widget with binary prefixes.
 #network_use_binary_prefix = false
 # Displays the network widget using bytes.
-#network_use_bytes = false
+network_use_bytes = true
 # Displays the network widget with a log scale.
 #network_use_log = false
 # Hides advanced options to stop a process on Unix-like systems.
-#disable_advanced_kill = false
+disable_advanced_kill = true
 # Shows GPU(s) memory
-#enable_gpu_memory = false
+#enable_gpu_memory = true
 # Shows cache and buffer memory
-#enable_cache_memory = false
+#enable_cache_memory = true
 # How much data is stored at once in terms of time.
 #retention = "10m"
 
 # These are flags around the process widget.
 
 #[processes]
-#columns = ["PID", "Name", "CPU%", "Mem%", "R/s", "W/s", "T.Read", "T.Write", "User", "State"]
+columns = [
+  "PID",
+  "Name",
+  "CPU%",
+  "Mem%",
+  "R/s",
+  "W/s",
+  "T.Read",
+  "T.Write",
+  "User",
+  "State",
+]
 
 # These are all the components that support custom theming.  Note that colour support
 # will depend on terminal support.
@@ -92,7 +90,14 @@
 table_header_color = "#f5e0dc"
 all_cpu_color = "#f5e0dc"
 avg_cpu_color = "#eba0ac"
-cpu_core_colors = ["#f38ba8","#fab387","#f9e2af","#a6e3a1","#74c7ec","#cba6f7"]
+cpu_core_colors = [
+  "#f38ba8",
+  "#fab387",
+  "#f9e2af",
+  "#a6e3a1",
+  "#74c7ec",
+  "#cba6f7",
+]
 ram_color = "#a6e3a1"
 swap_color = "#fab387"
 rx_color = "#a6e3a1"
@@ -108,7 +113,14 @@ selected_bg_color = "#cba6f7"
 high_battery_color = "#a6e3a1"
 medium_battery_color = "#f9e2af"
 low_battery_color = "#f38ba8"
-gpu_core_colors = ["#74c7ec","#cba6f7","#f38ba8","#fab387","#f9e2af","#a6e3a1"]
+gpu_core_colors = [
+  "#74c7ec",
+  "#cba6f7",
+  "#f38ba8",
+  "#fab387",
+  "#f9e2af",
+  "#a6e3a1",
+]
 arc_color = "#89dceb"
 
 # Layout - layouts follow a pattern like this:
@@ -119,28 +131,28 @@ arc_color = "#89dceb"
 # All widgets must have the type value set to one of ["cpu", "mem", "proc", "net", "temp", "disk", "empty"].
 # All layout components have a ratio value - if this is not set, then it defaults to 1.
 # The default widget layout:
-#[[row]]
-#  ratio=30
-#  [[row.child]]
-#  type="cpu"
-#[[row]]
-#    ratio=40
-#    [[row.child]]
-#      ratio=4
-#      type="mem"
-#    [[row.child]]
-#      ratio=3
-#      [[row.child.child]]
-#        type="temp"
-#      [[row.child.child]]
-#        type="disk"
-#[[row]]
-#  ratio=30
-#  [[row.child]]
-#    type="net"
-#  [[row.child]]
-#    type="proc"
-#    default=true
+[[row]]
+ratio = 30
+[[row.child]]
+type = "cpu"
+[[row]]
+ratio = 40
+[[row.child]]
+ratio = 4
+type = "mem"
+[[row.child]]
+ratio = 3
+[[row.child.child]]
+type = "temp"
+[[row.child.child]]
+type = "disk"
+[[row]]
+ratio = 30
+[[row.child]]
+type = "net"
+[[row.child]]
+type = "proc"
+default = true
 
 
 # Filters - you can hide specific temperature sensors, network interfaces, and disks using filters.  This is admittedly
