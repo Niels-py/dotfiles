@@ -29,6 +29,8 @@ bind '"\e[B":history-search-forward'
 bind '"\e[1;5C":forward-word'
 bind '"\e[1;5D":backward-word'
 
+alias hs="nvim $LOGFILE"
+
 alias l="lsd -lA --date relative"
 alias ll="lsd -l --date relative"
 alias ls="lsd"
@@ -60,6 +62,9 @@ alias ..="z .."
 alias ...="z ../.."
 alias ....="z ../../.."
 alias cd="z"
+
+export HISTSIZE=10000
+export HISTFILESIZE=100000
 
 export FZF_DEFAULT_OPTS='--preview "bat --style=full --color=always {}" --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8,fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc,marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8'
 export FZF_DEFAULT_COMMAND="fd --type f"
@@ -98,7 +103,53 @@ export ELECTRON_OZONE_PLATFORM_HINT=auto
 
 alias imv='imv -u nearest_neighbour'
 
-alias pipes=cpipes
-
 alias nv=nvim
+
+# osc compatability
+osc7_cwd() {
+    local strlen=${#PWD}
+    local encoded=""
+    local pos c o
+    for (( pos=0; pos<strlen; pos++ )); do
+        c=${PWD:$pos:1}
+        case "$c" in
+            [-/:_.!\'\(\)~[:alnum:]] ) o="${c}" ;;
+            * ) printf -v o '%%%02X' "'${c}" ;;
+        esac
+        encoded+="${o}"
+    done
+    printf '\e]7;file://%s%s\e\\' "${HOSTNAME}" "${encoded}"
+}
+
+
+PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }osc7_cwd
+
+# useful functions
+countdown() {
+    re='^[0-9]+$'
+    if ! [[ $1 =~ $re ]] ; then
+        echo "ERROR: first argument should be time in seconds"
+        return
+    fi
+
+    start="$(( $(date '+%s') + $1 ))"
+    while [ $start -ge $(date +%s) ]; do
+        time_left="$(( $start - $(date +%s) ))"
+        remaining_time=$(date -u -d "@$time_left" +%H:%M:%S)
+        
+        printf '\033[2J%s\033[H' "$(figlet "$remaining_time")"
+    done
+    printf '\033[2J'
+}
+
+stopwatch() {
+    start=$(date +%s)
+    while true; do
+        time="$(( $(date +%s) - $start))"
+        watch_time="$(date -u -d "@$time" +%H:%M:%S)"
+        printf '\033[2J%s\033[H' "$(figlet "$watch_time")"
+        sleep 0.1
+    done
+    printf '\033[2J'
+}
 

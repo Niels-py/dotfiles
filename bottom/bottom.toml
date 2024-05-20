@@ -59,7 +59,7 @@ network_use_bytes = true
 # Displays the network widget with a log scale.
 #network_use_log = false
 # Hides advanced options to stop a process on Unix-like systems.
-disable_advanced_kill = true
+disable_advanced_kill = false
 # Shows GPU(s) memory
 #enable_gpu_memory = true
 # Shows cache and buffer memory
