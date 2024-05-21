@@ -456,5 +456,14 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // [HIDDE
 //disable showing about:blank page when possible at startup
 user_pref("browser.startup.blankWindow", false);
 
-// disable using system colors
-//user_pref("browser.display.use_system_colors", false); // Default: false (Non-Windows)
+// use system colors
+user_pref("browser.display.use_system_colors", true);
+
+// save firefox network cache into ram
+user_pref("browser.cache.disk.enable", false);
+
+// disable webnotifications in general
+user_pref("dom.webnotifications.enabled", false);
+
+// vaapi
+user_pref("media.ffmpeg.vaapi.enabled", true);

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Output
+kanshi &
+
 # ENVIRONMENT
 # =========================================
 export EDITOR=nvim
@@ -141,12 +144,13 @@ riverctl map normal None XF86AudioNext spawn 'playerctl next'
 # =========================================
 
 # TODO: Screenshot
+riverctl map normal Super S spawn 'grim -g "$(slurp)" - | wl-copy ; notify-send -t 3000 -u low "Screenshot"'
 
 # TODO: Tesseract text copy
-riverctl map normal Super+Shift T spawn 'grim -g "$(slurp)" - | tesseract-ocr stdin stdout | wl-copy notify-send -t 3000 -u low "Textshot" "$(wl-paste)"'
+riverctl map normal Super+Shift T spawn 'grim -g "$(slurp)" - | tesseract-ocr stdin stdout | wl-copy ; notify-send -t 3000 -u low "Textshot" "$(wl-paste)"'
 
 # open wl-paste in nvim
-riverctl map normal Super N spawn 'wl-paste > /tmp/cfn.txt; footclient nvim /tmp/cfn.txt'
+riverctl map normal Super N spawn 'wl-paste > /tmp/cfn.txt ; footclient nvim /tmp/cfn.txt'
 
 # open cliphist in fuzzel
 riverctl map normal Super C spawn $'cliphist list | fuzzel -d | head -n 1 | awk \'{printf "%s", $1}\' | cliphist decode | wl-copy'
@@ -154,8 +158,8 @@ riverctl map normal Super C spawn $'cliphist list | fuzzel -d | head -n 1 | awk 
 
 # Output
 # =========================================
-wlr-randr --output DP-2 --mode 3840x2160 --pos 1440,0
-wlr-randr --output HDMI-A-1 --mode 1920x1080 --pos 0,0 --transform 90 --scale 0.75
+# wlr-randr --output DP-2 --mode 3840x2160 --pos 1440,0
+# wlr-randr --output HDMI-A-1 --mode 1920x1080 --pos 0,0 --transform 90 --scale 0.75
 
 # Colors & Border
 # =========================================

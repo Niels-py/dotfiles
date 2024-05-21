@@ -137,7 +137,8 @@ countdown() {
         time_left="$(( $start - $(date +%s) ))"
         remaining_time=$(date -u -d "@$time_left" +%H:%M:%S)
         
-        printf '\033[2J%s\033[H' "$(figlet "$remaining_time")"
+        printf '\033[2J%s\033[H' "$(figlet -tc "$remaining_time")"
+        sleep 0.1
     done
     printf '\033[2J'
 }
@@ -147,7 +148,7 @@ stopwatch() {
     while true; do
         time="$(( $(date +%s) - $start))"
         watch_time="$(date -u -d "@$time" +%H:%M:%S)"
-        printf '\033[2J%s\033[H' "$(figlet "$watch_time")"
+        printf '\033[2J%s\033[H' "$(figlet -tc "$watch_time")"
         sleep 0.1
     done
     printf '\033[2J'
