@@ -5,9 +5,12 @@ font=JetBrainsMono Nerd Font 16
 width=600
 height=400
 margin=8
-padding=0
+padding=4
 
 border-radius=0
+border-size=4
+
+anchor=bottom-right
 
 default-timeout=10000
 max-visible=5

@@ -146,7 +146,7 @@ riverctl map normal None XF86AudioNext spawn 'playerctl next'
 # TODO: Screenshot
 riverctl map normal Super S spawn 'grim -g "$(slurp)" - | wl-copy ; notify-send -t 3000 -u low "Screenshot"'
 
-# TODO: Tesseract text copy
+# Tesseract text copy
 riverctl map normal Super+Shift T spawn 'grim -g "$(slurp)" - | tesseract-ocr stdin stdout | wl-copy ; notify-send -t 3000 -u low "Textshot" "$(wl-paste)"'
 
 # open wl-paste in nvim
@@ -216,9 +216,6 @@ $(sleep 1; waybar) &
 mako &
 foot -s &
 
-# swayidle -w \
-#     timeout 1200 'wlr-randr --output HDMI-A-1 --off && wlr-randr --output DP-2 --off' \
-#     resume 'wlr-randr --output DP-2 --on && wlr-randr --output DP-2 --mode 3840x2160 --pos 1440,0 && wlr-randr --output HDMI-A-1 --on && wlr-randr --output HDMI-A-1 --mode 1920x1080 --pos 0,0 --transform 90 --scale 0.75' &
 swayidle -w \
     timeout 1200 'notify-send "Swayidle" "going to sleep in 10min"' \
     timeout 1800 'zzz' &

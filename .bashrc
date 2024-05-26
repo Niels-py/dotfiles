@@ -53,6 +53,7 @@ alias spotdl="~/Documents/dev/python-venv/bin/spotdl --preload --format mp3"
 alias wget='wget --no-hsts'
 
 alias kali="docker run --tty --interactive --privileged --rm kalilinux/kali-rolling"
+alias alpine="docker run --tty --interactive --privileged --rm alpine"
 
 alias poweroff="loginctl poweroff"
 alias reboot="loginctl reboot"
@@ -102,6 +103,8 @@ export GDK_BACKEND=wayland
 export ELECTRON_OZONE_PLATFORM_HINT=auto
 
 alias imv='imv -u nearest_neighbour'
+
+alias spt='spotify-tui'
 
 alias nv=nvim
 
