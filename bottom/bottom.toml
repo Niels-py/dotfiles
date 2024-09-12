@@ -86,10 +86,9 @@ columns = [
 # These are all the components that support custom theming.  Note that colour support
 # will depend on terminal support.
 
-[colors]
-table_header_color = "#f5e0dc"
-all_cpu_color = "#f5e0dc"
-avg_cpu_color = "#eba0ac"
+[styles.cpu]
+all_entry_color = "#f5e0dc"
+avg_entry_color = "#eba0ac"
 cpu_core_colors = [
   "#f38ba8",
   "#fab387",
@@ -98,21 +97,11 @@ cpu_core_colors = [
   "#74c7ec",
   "#cba6f7",
 ]
+[styles.memory]
 ram_color = "#a6e3a1"
+cache_color = "#ff0000"
 swap_color = "#fab387"
-rx_color = "#a6e3a1"
-tx_color = "#f38ba8"
-widget_title_color = "#f2cdcd"
-border_color = "#585b70"
-highlighted_border_color = "#f5c2e7"
-text_color = "#cdd6f4"
-graph_color = "#a6adc8"
-cursor_color = "#f5c2e7"
-selected_text_color = "#11111b"
-selected_bg_color = "#cba6f7"
-high_battery_color = "#a6e3a1"
-medium_battery_color = "#f9e2af"
-low_battery_color = "#f38ba8"
+arc_color = "#89dceb"
 gpu_core_colors = [
   "#74c7ec",
   "#cba6f7",
@@ -121,8 +110,33 @@ gpu_core_colors = [
   "#f9e2af",
   "#a6e3a1",
 ]
-arc_color = "#89dceb"
 
+[styles.network]
+rx_color = "#a6e3a1"
+tx_color = "#f38ba8"
+rx_total_color = "#a6e3a1"
+tx_total_color = "#f38ba8"
+
+[styles.battery]
+high_battery_color = "#a6e3a1"
+medium_battery_color = "#f9e2af"
+low_battery_color = "#f38ba8"
+
+[styles.tables]
+headers = "#f5e0dc"
+
+[styles.graphs]
+graph_color = "#a6adc8"
+# legend_text.color = ""
+[styles.widgets]
+widget_title_color = "#f2cdcd"
+border_color = "#585b70"
+highlighted_border_color = "#f5c2e7"
+text_color = "#cdd6f4"
+# cursor_color = "#f5c2e7"
+selected_text.color = "#11111b"
+selected_text.bg_color = "#cba6f7"
+selected_text.bold = true
 # Layout - layouts follow a pattern like this:
 # [[row]] represents a row in the application.
 # [[row.child]] represents either a widget or a column.
