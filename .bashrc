@@ -9,6 +9,13 @@ pokeget --hide-name random
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
     . /usr/share/bash-completion/bash_completion
 
+
+#  ____  _           _     
+# | __ )(_)_ __   __| |___ 
+# |  _ \| | '_ \ / _` / __|
+# | |_) | | | | | (_| \__ \
+# |____/|_|_| |_|\__,_|___/
+                         
 # If there are multiple matches for completion, Tab should cycle through them
 bind 'TAB:menu-complete'
 # And Shift-Tab should cycle backwards
@@ -29,8 +36,14 @@ bind '"\e[B":history-search-forward'
 bind '"\e[1;5C":forward-word'
 bind '"\e[1;5D":backward-word'
 
-alias hs="nvim $LOGFILE"
 
+#     _    _ _                     
+#    / \  | (_) __ _ ___  ___  ___ 
+#   / _ \ | | |/ _` / __|/ _ \/ __|
+#  / ___ \| | | (_| \__ \  __/\__ \
+# /_/   \_\_|_|\__,_|___/\___||___/
+
+# file management
 alias l="lsd -lA --date relative"
 alias ll="lsd -l --date relative"
 alias ls="lsd"
@@ -40,29 +53,51 @@ alias tree="lsd --tree"
 alias md="mkdir -p"
 alias rm="trash-put"
 
-alias wg-up="sudo wg-quick up wg0"
-alias wg-down="sudo wg-quick down wg0"
-
-alias py="python3"
-alias venv=". ~/Documents/dev/python-venv/bin/activate"
-
-alias mdl="yt-dlp --embed-metadata --embed-thumbnail --embed-chapters -x --audio-format mp3 -f bestaudio -o '%(title)s.%(ext)s'"
-alias vdl="yt-dlp --format bestvideo+bestaudio --merge-output-format mkv --embed-subs --embed-metadata --sponsorblock-mark all -N 4 -o '%(title)s.%(ext)s'"
-alias spotdl="~/Documents/dev/python-venv/bin/spotdl --preload --format mp3"
-
-alias wget='wget --no-hsts'
-
-alias kali="docker run --tty --interactive --privileged --rm kalilinux/kali-rolling"
-alias alpine="docker run --tty --interactive --privileged --rm alpine"
-
-alias poweroff="loginctl poweroff"
-alias reboot="loginctl reboot"
-alias zzz="loginctl suspend"
-alias ZZZ="loginctl hibernate"
+# zoxide stuff
 alias ..="z .."
 alias ...="z ../.."
 alias ....="z ../../.."
 alias cd="z"
+
+# wireguard
+alias wg-up="sudo wg-quick up wg0"
+alias wg-down="sudo wg-quick down wg0"
+
+# python
+alias py="python3"
+alias venv=". ~/Documents/dev/python-venv/bin/activate"
+
+# downloads
+alias mdl="yt-dlp --embed-metadata --embed-thumbnail --embed-chapters -x --audio-format mp3 -f bestaudio -o '%(title)s.%(ext)s'"
+alias vdl="yt-dlp --format bestvideo+bestaudio --merge-output-format mkv --embed-subs --embed-metadata --sponsorblock-mark all -N 4 -o '%(title)s.%(ext)s'"
+alias spotdl="~/Documents/dev/python-venv/bin/spotdl --preload --format mp3"
+
+# docker
+alias kali="docker run --tty --interactive --privileged --rm kalilinux/kali-rolling"
+alias alpine="docker run --tty --interactive --privileged --rm alpine"
+
+# power
+alias poweroff="loginctl poweroff"
+alias reboot="loginctl reboot"
+alias zzz="loginctl suspend"
+alias ZZZ="loginctl hibernate"
+
+# no wget history file
+alias wget='wget --no-hsts'
+
+# program shortcuts
+alias imv='imv -u nearest_neighbour' # better for pixel art
+alias spt='spotify-tui'
+alias nv=nvim
+alias open=xdg-open
+
+
+#  _____                       _       
+# | ____|_  ___ __   ___  _ __| |_ ___ 
+# |  _| \ \/ / '_ \ / _ \| '__| __/ __|
+# | |___ >  <| |_) | (_) | |  | |_\__ \
+# |_____/_/\_\ .__/ \___/|_|   \__|___/
+#            |_|                       
 
 export HISTSIZE=10000
 export HISTFILESIZE=100000
@@ -102,11 +137,12 @@ export SDL_VIDEODRIVER=wayland
 export GDK_BACKEND=wayland
 export ELECTRON_OZONE_PLATFORM_HINT=auto
 
-alias imv='imv -u nearest_neighbour'
 
-alias spt='spotify-tui'
-
-alias nv=nvim
+#   ___  ____   ____ 
+#  / _ \/ ___| / ___|
+# | | | \___ \| |    
+# | |_| |___) | |___ 
+#  \___/|____/ \____|
 
 # osc compatability
 osc7_cwd() {
@@ -124,9 +160,15 @@ osc7_cwd() {
     printf '\e]7;file://%s%s\e\\' "${HOSTNAME}" "${encoded}"
 }
 
-
 PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }osc7_cwd
 
+
+#        _   _ _     
+#  _   _| |_(_) |___ 
+# | | | | __| | / __|
+# | |_| | |_| | \__ \
+#  \__,_|\__|_|_|___/
+                   
 # useful functions
 countdown() {
     re='^[0-9]+$'
