@@ -144,10 +144,10 @@ riverctl map normal None XF86AudioNext spawn 'playerctl next'
 # =========================================
 
 # TODO: Screenshot
-riverctl map normal Super S spawn 'grim -g "$(slurp)" - | wl-copy ; notify-send -t 3000 -u low "Screenshot"'
+riverctl map normal Super S spawn 'grim -g "$(slurp)" - | wl-copy ; notify-send.sh -t 3000 -u low "Screenshot"'
 
 # Tesseract text copy
-riverctl map normal Super+Shift T spawn 'grim -g "$(slurp)" - | tesseract-ocr stdin stdout | wl-copy ; notify-send -t 3000 -u low "Textshot" "$(wl-paste)"'
+riverctl map normal Super+Shift T spawn 'grim -g "$(slurp)" - | tesseract-ocr stdin stdout | wl-copy ; notify-send.sh -t 3000 -u low "Textshot" "$(wl-paste)"'
 
 # open wl-paste in nvim
 riverctl map normal Super N spawn 'wl-paste > /tmp/cfn.txt ; footclient nvim /tmp/cfn.txt'
@@ -217,7 +217,7 @@ mako &
 foot -s &
 
 swayidle -w \
-    timeout 1200 'notify-send "Swayidle" "going to sleep in 10min"' \
+    timeout 1200 'notify-send.sh "Swayidle" "going to sleep in 10min"' \
     timeout 1800 'zzz' &
 
 
@@ -225,5 +225,6 @@ swayidle -w \
 # =========================================
 riverctl attach-mode top
 riverctl default-layout rivertile
+riverctl rule-add ssd
 rivertile -view-padding 4 -outer-padding 4 -main-ratio 0.5 &
 

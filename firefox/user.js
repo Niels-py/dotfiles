@@ -26,11 +26,11 @@ user_pref("browser.newtabpage.activity-stream.feeds.snippets", false);
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 user_pref(
   "browser.newtabpage.activity-stream.section.highlights.includePocket",
-  false,
+  false
 );
 user_pref(
   "browser.newtabpage.activity-stream.feeds.discoverystreamfeed",
-  false,
+  false
 );
 user_pref("browser.newtabpage.activity-stream.showSponsored", false); // Pocket -> Sponsored Stories
 user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // Sponsored Shortcuts
@@ -43,7 +43,7 @@ user_pref("browser.newtabpage.activity-stream.default.sites", "");
 // use Mozilla geolocation service instead of Google if permission is granted
 user_pref(
   "geo.provider.network.url",
-  "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%",
+  "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%"
 );
 
 // disable using the OS’s geolocation service
@@ -155,7 +155,7 @@ user_pref("browser.safebrowsing.downloads.remote.url", "");
 // disable checks for unwanted software
 user_pref(
   "browser.safebrowsing.downloads.remote.block_potentially_unwanted",
-  false,
+  false
 );
 user_pref("browser.safebrowsing.downloads.remote.block_uncommon", false);
 
@@ -363,11 +363,11 @@ user_pref("privacy.partition.serviceWorkers", true); // Default: true
 // enable APS (Always Partitioning Storage)
 user_pref(
   "privacy.partition.always_partition_third_party_non_cookie_storage",
-  true,
+  true
 );
 user_pref(
   "privacy.partition.always_partition_third_party_non_cookie_storage.exempt_sessionstorage",
-  false,
+  false
 );
 
 /*********************************************************************
