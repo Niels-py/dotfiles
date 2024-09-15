@@ -68,8 +68,8 @@ alias py="python3"
 alias venv=". ~/Documents/dev/python-venv/bin/activate"
 
 # downloads
-alias mdl="yt-dlp --embed-metadata --embed-thumbnail --embed-chapters -x --audio-format mp3 -f bestaudio -o '%(title)s.%(ext)s'"
-alias vdl="yt-dlp --format bestvideo+bestaudio --merge-output-format mkv --embed-subs --embed-metadata --sponsorblock-mark all -N 4 -o '%(title)s.%(ext)s'"
+alias mdl="yt-dlp --embed-metadata --embed-thumbnail --embed-chapters --cookies-from-browser firefox -x --audio-format mp3 -f bestaudio -o '%(title)s.%(ext)s'"
+alias vdl="yt-dlp --format bestvideo+bestaudio --merge-output-format mkv --cookies-from-browser firefox --embed-subs --embed-metadata --sponsorblock-mark all -N 4 -o '%(title)s.%(ext)s'"
 alias spotdl="~/Documents/dev/python-venv/bin/spotdl --preload --format mp3"
 
 # docker

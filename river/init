@@ -7,7 +7,7 @@ kanshi &
 # =========================================
 export EDITOR=nvim
 export VISUAL=nvim
-export TERM=foot
+export TERM=alacritty
 
 export XDG_CONFIG_HOME=$HOME/.config/
 export XDG_CACHE_HOME=$HOME/.cache/
@@ -48,8 +48,8 @@ riverctl map normal Super Space toggle-float
 
 # spawn programms
 # =========================================
-riverctl map normal Super Return spawn footclient
-riverctl map normal Super Z spawn 'footclient zellij'
+riverctl map normal Super Return spawn alacritty
+# riverctl map normal Super Z spawn '$TERM -e zellij'
 riverctl map normal Super W spawn firefox
 riverctl map normal Super+Shift W spawn 'firefox --private-window'
 riverctl map normal Super R spawn fuzzel
@@ -152,7 +152,7 @@ riverctl map normal Super S spawn 'grim -g "$(slurp)" - | wl-copy ; notify-send.
 riverctl map normal Super+Shift T spawn 'grim -g "$(slurp)" - | tesseract-ocr stdin stdout | wl-copy ; notify-send.sh -t 3000 -u low "Textshot" "$(wl-paste)"'
 
 # open wl-paste in nvim
-riverctl map normal Super N spawn 'wl-paste > /tmp/cfn.txt ; footclient nvim /tmp/cfn.txt'
+riverctl map normal Super N spawn 'wl-paste > /tmp/cfn.txt ; $TERM -e nvim /tmp/cfn.txt'
 
 # open cliphist in fuzzel
 riverctl map normal Super C spawn $'cliphist list | fuzzel -d | head -n 1 | awk \'{printf "%s", $1}\' | cliphist decode | wl-copy'
@@ -216,7 +216,7 @@ cliphist wipe
 wl-paste --watch cliphist store &
 $(sleep 1; waybar) &
 mako &
-foot -s &
+# foot -s &
 
 swayidle -w \
     timeout 1200 'notify-send.sh "Swayidle" "going to sleep in 10min"' \
