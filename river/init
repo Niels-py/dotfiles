@@ -23,7 +23,7 @@ export GOPATH=$HOME/.local/share/go
 # themes
 export XCURSOR_THEME=Bibata-Modern-Classic
 export XCURSOR_SIZE=32
-# export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export QT_ENABLE_HIGHDPI_SCALING=1
 export QT_STYLE_OVERRIDE=kvantum
@@ -35,9 +35,12 @@ export MOZ_ENABLE_WAYLAND=1
 export WLR_RENDERER=vulkan
 export QT_QPA_PLATFORM=wayland
 export SDL_VIDEODRIVER=wayland
-export GDK_BACKEND=wayland
+export GDK_BACKEND='wayland,x11'
 export ELECTRON_OZONE_PLATFORM_HINT=auto
 export OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models
+export XDG_CURRENT_DESKTOP=sway
+export XDG_SESSION_DESKTOP=sway
+export XDG_CURRENT_SESSION_TYPE=wayland
 
 
 # basic commmand
@@ -48,7 +51,7 @@ riverctl map normal Super Space toggle-float
 
 # spawn programms
 # =========================================
-riverctl map normal Super Return spawn alacritty
+riverctl map normal Super Return spawn $TERM
 # riverctl map normal Super Z spawn '$TERM -e zellij'
 riverctl map normal Super W spawn firefox
 riverctl map normal Super+Shift W spawn 'firefox --private-window'
@@ -214,14 +217,19 @@ mpDris2 &
 
 cliphist wipe
 wl-paste --watch cliphist store &
-$(sleep 1; waybar) &
+# $(sleep 1; waybar) &
+waybar &
 mako &
 # foot -s &
+swww-daemon &
 
 swayidle -w \
     timeout 1200 'notify-send.sh "Swayidle" "going to sleep in 10min"' \
     timeout 1800 'zzz' &
 
+# set cursor theme
+gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Classic
+gsettings set org.gnome.desktop.interface cursor-size 32
 
 # Layout generator
 # =========================================
