@@ -37,10 +37,11 @@ export QT_QPA_PLATFORM=wayland
 export SDL_VIDEODRIVER=wayland
 export GDK_BACKEND='wayland,x11'
 export ELECTRON_OZONE_PLATFORM_HINT=auto
-export OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models
+# export OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models
 export XDG_CURRENT_DESKTOP=sway
 export XDG_SESSION_DESKTOP=sway
 export XDG_CURRENT_SESSION_TYPE=wayland
+export LIBSEAT_BACKEND=logind;
 
 
 # basic commmand
@@ -75,7 +76,7 @@ riverctl map normal Super+Shift Period send-to-output next
 riverctl map normal Super+Shift Comma send-to-output previous
 
 # move window to top of stack
-riverctl map normal Super T zoom
+riverctl map normal Super Z zoom
 
 riverctl map -repeat normal Super H send-layout-cmd rivertile "main-ratio -0.05"
 riverctl map -repeat normal Super L send-layout-cmd rivertile "main-ratio +0.05"
@@ -148,23 +149,18 @@ riverctl map normal None XF86AudioNext spawn 'playerctl next'
 # Functions
 # =========================================
 
-# TODO: Screenshot
-riverctl map normal Super S spawn 'grim -g "$(slurp)" - | wl-copy ; notify-send.sh -t 3000 -u low "Screenshot"'
+# Screenshot
+riverctl map normal Super S spawn 'grim -g "$(slurp)" - | wl-copy"'
 
 # Tesseract text copy
-riverctl map normal Super+Shift T spawn 'grim -g "$(slurp)" - | tesseract-ocr stdin stdout | wl-copy ; notify-send.sh -t 3000 -u low "Textshot" "$(wl-paste)"'
+riverctl map normal Super T spawn 'grim -g "$(slurp)" - | tesseract-ocr stdin stdout | wl-copy'
 
 # open wl-paste in nvim
-riverctl map normal Super N spawn 'wl-paste > /tmp/cfn.txt ; $TERM -e nvim /tmp/cfn.txt'
+riverctl map normal Super N spawn "wl-paste > /tmp/cfn.txt && $TERM -e nvim /tmp/cfn.txt"
 
 # open cliphist in fuzzel
-riverctl map normal Super C spawn $'cliphist list | fuzzel -d | head -n 1 | awk \'{printf "%s", $1}\' | cliphist decode | wl-copy'
+riverctl map normal Super C spawn "cliphist list | fuzzel -d | cut -d ' ' -f 1 | cliphist decode | wl-copy"
 
-
-# Output
-# =========================================
-# wlr-randr --output DP-2 --mode 3840x2160 --pos 1440,0
-# wlr-randr --output HDMI-A-1 --mode 1920x1080 --pos 0,0 --transform 90 --scale 0.75
 
 # Colors & Border
 # =========================================
@@ -217,7 +213,6 @@ mpDris2 &
 
 cliphist wipe
 wl-paste --watch cliphist store &
-# $(sleep 1; waybar) &
 waybar &
 mako &
 # foot -s &

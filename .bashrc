@@ -9,7 +9,6 @@ pokeget --hide-name random
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
     . /usr/share/bash-completion/bash_completion
 
-
 #  ____  _           _     
 # | __ )(_)_ __   __| |___ 
 # |  _ \| | '_ \ / _` / __|
@@ -70,11 +69,6 @@ alias venv=". ~/Documents/dev/python-venv/bin/activate"
 # downloads
 alias mdl="yt-dlp --embed-metadata --embed-thumbnail --embed-chapters --cookies-from-browser firefox -x --audio-format mp3 -f bestaudio -o '%(title)s.%(ext)s'"
 alias vdl="yt-dlp --format bestvideo+bestaudio --merge-output-format mkv --cookies-from-browser firefox --embed-subs --embed-metadata --sponsorblock-mark all -N 4 -o '%(title)s.%(ext)s'"
-alias spotdl="~/Documents/dev/python-venv/bin/spotdl --preload --format mp3"
-
-# docker
-alias kali="docker run --tty --interactive --privileged --rm kalilinux/kali-rolling"
-alias alpine="docker run --tty --interactive --privileged --rm alpine"
 
 # power
 alias poweroff="loginctl poweroff"
@@ -87,7 +81,6 @@ alias wget='wget --no-hsts'
 
 # program shortcuts
 alias imv='imv -u nearest_neighbour' # better for pixel art
-alias spt='spotify-tui'
 alias nv=nvim
 alias open=xdg-open
 
@@ -109,7 +102,7 @@ export LESSHISTFILE=-
 
 export EDITOR=nvim
 export VISUAL=nvim
-export TERM=foot
+export TERM=alacritty
 
 export XDG_CONFIG_HOME=$HOME/.config/
 export XDG_CACHE_HOME=$HOME/.cache/
@@ -200,4 +193,3 @@ stopwatch() {
     done
     printf '\033[2J'
 }
-

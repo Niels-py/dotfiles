@@ -167,13 +167,13 @@ user_pref("browser.safebrowsing.allowOverride", false);
  *********************************************************************/
 
 // disable link prefetching
-user_pref("network.prefetch-next", false);
+//user_pref("network.prefetch-next", false);
 
 // disable DNS prefetching
-user_pref("network.dns.disablePrefetch", true);
+//user_pref("network.dns.disablePrefetch", true);
 
 // disable predictor / prefetching
-user_pref("network.predictor.enabled", false);
+//user_pref("network.predictor.enabled", false);
 
 // disable link-mouseover opening connection to linked server
 user_pref("network.http.speculative-parallel-limit", 0);
@@ -201,8 +201,8 @@ user_pref("network.IDN_show_punycode", true);
  *********************************************************************/
 
 // disable search suggestions
-user_pref("browser.search.suggest.enabled", false);
-user_pref("browser.urlbar.suggest.searches", false);
+//user_pref("browser.search.suggest.enabled", false);
+//user_pref("browser.urlbar.suggest.searches", false);
 
 // disable location bar domain guessing
 user_pref("browser.fixup.alternate.enabled", false);
@@ -222,8 +222,8 @@ user_pref("extensions.formautofill.creditCards.enabled", false);
 user_pref("extensions.formautofill.heuristics.enabled", false);
 
 // disable location bar contextual suggestions:
-user_pref("browser.urlbar.quicksuggest.scenario", "history");
-user_pref("browser.urlbar.quicksuggest.enabled", false);
+//user_pref("browser.urlbar.quicksuggest.scenario", "history");
+//user_pref("browser.urlbar.quicksuggest.enabled", false);
 user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
 user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
 
@@ -276,7 +276,7 @@ user_pref("security.pki.sha1_enforcement_level", 1);
  *    1 = allow user MiTM (i.e. your Antivirus)
  *    2 = strict
  */
-user_pref("security.cert_pinning.enforcement_level", 2);
+//user_pref("security.cert_pinning.enforcement_level", 2);
 
 /*
  * enable CRLite
@@ -313,19 +313,19 @@ user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
  *********************************************************************/
 
 // disable WebRTC
-user_pref("media.peerconnection.enabled", true);
+//user_pref("media.peerconnection.enabled", true);
 
 // force WebRTC inside the proxy
-user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true);
+//user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true);
 
 // force a single network interface for ICE candidates generation
-user_pref("media.peerconnection.ice.default_address_only", true);
+//user_pref("media.peerconnection.ice.default_address_only", true);
 
 // force exclusion of private IPs from ICE candidates
-user_pref("media.peerconnection.ice.no_host", true);
+//user_pref("media.peerconnection.ice.no_host", true);
 
 // disable WebGL (Web Graphics Library):
-user_pref("webgl.disabled", false);
+//user_pref("webgl.disabled", false);
 
 /*
  * disable autoplay of HTML5 media, You can set exceptions under site
@@ -334,10 +334,10 @@ user_pref("webgl.disabled", false);
  *    1 = block non-muted media (default)
  *    5 = block all
  */
-user_pref("media.autoplay.default", 5);
+//user_pref("media.autoplay.default", 5);
 
 // disable DRM Content
-user_pref("media.eme.enabled", true);
+//user_pref("media.eme.enabled", false);
 
 /*********************************************************************
  * Downloads
@@ -355,27 +355,27 @@ user_pref("browser.download.manager.addToRecentDocs", true);
  * enable ETP (Enhanced Tracking Protection)
  * ETP strict mode enables Total Cookie Protection (TCP)
  */
-user_pref("browser.contentblocking.category", "strict");
+//user_pref("browser.contentblocking.category", "strict");
 
 // enable state partitioning of service workers
-user_pref("privacy.partition.serviceWorkers", true); // Default: true
+//user_pref("privacy.partition.serviceWorkers", true); // Default: true
 
 // enable APS (Always Partitioning Storage)
-user_pref(
-  "privacy.partition.always_partition_third_party_non_cookie_storage",
-  true
-);
-user_pref(
-  "privacy.partition.always_partition_third_party_non_cookie_storage.exempt_sessionstorage",
-  false
-);
+//user_pref(
+//  "privacy.partition.always_partition_third_party_non_cookie_storage",
+//  true
+//);
+//user_pref(
+//  "privacy.partition.always_partition_third_party_non_cookie_storage.exempt_sessionstorage",
+//  false
+//);
 
 /*********************************************************************
  * UI Features
  *********************************************************************/
 
 // block popup windows
-user_pref("dom.disable_open_during_load", true);
+//user_pref("dom.disable_open_during_load", true);
 
 // limit events that can cause a popup
 user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
@@ -390,8 +390,8 @@ user_pref("extensions.screenshots.disabled", true);
 user_pref("pdfjs.enableScripting", false);
 
 // enable Containers and show the UI settings
-user_pref("privacy.userContext.enabled", true);
-user_pref("privacy.userContext.ui.enabled", true);
+//user_pref("privacy.userContext.enabled", true);
+//user_pref("privacy.userContext.ui.enabled", true);
 
 // prefers less animation
 user_pref("ui.prefersReducedMotion", 1);
@@ -416,17 +416,17 @@ user_pref("extensions.postDownloadThirdPartyPrompt", false);
  *********************************************************************/
 
 // clear history when Firefox closes
-user_pref("network.cookie.lifetimePolicy", 0);
-user_pref("privacy.sanitize.sanitizeOnShutdown", false);
-user_pref("privacy.clearOnShutdown.cache", false);
-user_pref("privacy.clearOnShutdown.cookies", false);
-user_pref("privacy.clearOnShutdown.downloads", false);
-user_pref("privacy.clearOnShutdown.formdata", true);
-user_pref("privacy.clearOnShutdown.history", false);
-user_pref("privacy.clearOnShutdown.offlineApps", true);
-user_pref("privacy.clearOnShutdown.sessions", false);
-user_pref("privacy.clearOnShutdown.sitesettings", false);
-user_pref("privacy.sanitize.timeSpan", 0);
+//user_pref("network.cookie.lifetimePolicy", 0);
+//user_pref("privacy.sanitize.sanitizeOnShutdown", false);
+//user_pref("privacy.clearOnShutdown.cache", false);
+//user_pref("privacy.clearOnShutdown.cookies", false);
+//user_pref("privacy.clearOnShutdown.downloads", false);
+//user_pref("privacy.clearOnShutdown.formdata", true);
+//user_pref("privacy.clearOnShutdown.history", false);
+//user_pref("privacy.clearOnShutdown.offlineApps", true);
+//user_pref("privacy.clearOnShutdown.sessions", false);
+//user_pref("privacy.clearOnShutdown.sitesettings", false);
+//user_pref("privacy.sanitize.timeSpan", 0);
 
 /*********************************************************************
  * Fingerprinting
@@ -444,11 +444,11 @@ user_pref("privacy.sanitize.timeSpan", 0);
  *
  * See: https://support.mozilla.org/en-US/kb/firefox-protection-against-fingerprinting
  */
-user_pref("privacy.resistFingerprinting", false);
+//user_pref("privacy.resistFingerprinting", true);
 
 // set new window size rounding max values
-user_pref("privacy.window.maxInnerWidth", 1600);
-user_pref("privacy.window.maxInnerHeight", 900);
+//user_pref("privacy.window.maxInnerWidth", 1600);
+//user_pref("privacy.window.maxInnerHeight", 900);
 
 // disable mozAddonManager Web API
 user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // [HIDDEN PREF]
