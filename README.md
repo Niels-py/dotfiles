@@ -1,6 +1,6 @@
 # dotfiles
 
-my linux dotfiles for void linux machine.
+my linux dotfiles
 
 ## Todo
 
