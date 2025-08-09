@@ -11,7 +11,15 @@
             "7": "七",
             "8": "八",
             "9": "九",
-            "10": "十"
+            "10": "一",
+            "11": "二",
+            "12": "三",
+            "13": "四",
+            "14": "五",
+            "15": "六",
+            "16": "七",
+            "17": "八",
+            "18": "九",
         },
     },
     "hyprland/window": {
@@ -83,7 +91,7 @@
         // "dynamic-order": ["artist", "title", "position", "length"],
         "dynamic-order": ["artist", "title"],
         "dynamic-separator": " - ",
-        "title-len": 80,
+        "title-len": 70,
         "dynamic-importance-order": ["title", "position", "length", "artist", "album"],
         "on-click-middle": "playerctl play-pause",
         "status-icons": {
@@ -115,4 +123,14 @@
             "on-click-right": "mode"
         }
     },
+    "keyboard-state": {
+        "capslock": true,
+        "format": {
+            "capslock": "{icon} CAPS"
+        },
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    }
 }

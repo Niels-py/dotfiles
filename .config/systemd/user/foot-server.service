@@ -1,0 +1,10 @@
+[Unit]
+Description=Foot terminal server for Wayland display
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/foot --server
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

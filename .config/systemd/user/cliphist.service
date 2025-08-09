@@ -1,0 +1,10 @@
+[Unit]
+Description=Clipboard watch daemon for cliphist
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/wl-paste --type text --watch /usr/bin/cliphist store
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,26 @@
+/* #back-button { display: none; } */
+/* #forward-button { display: none; } */
+/* #reload-button { display: none; } */
+/* empty space before and after the url bar */
+/* #customizableui-special-spring1, #customizableui-special-spring2 { display: none; } */
+
+/* #tabs-newtab-button {display: none !important;} */
+#alltabs-button { display: none !important }
+#new-tab-button {display: none !important;}
+#firefox-view-button {display: none !important;}
+
+/* #pageActionButton { display: none; } */
+#tracking-protection-icon-container { display: none !important; }
+/* #reader-mode-button{ display: none !important; } */
+/* #star-button { display: none; } */
+/* #star-button-box:hover { background: inherit !important; } */
+#urlbar-searchmode-switcher { display: none; }
+/* #searchmode-switcher-chicklet { display: none !important; } */
+
+/* Go to arrow button at the end of the urlbar when searching */
+#urlbar-go-button { display: none; }
+
+#urlbar-input {
+	margin-left: 0.5em !important;
+	margin-right: 0.5em !important;
+}

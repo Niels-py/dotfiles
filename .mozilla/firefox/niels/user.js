@@ -1,91 +1,139 @@
-// disable about:config warning
-user_pref("browser.aboutConfig.showWarning", false);
-
-// disable default browser check
-//user_pref("browser.shell.checkDefaultBrowser", false);
-
-// activate ./chrome/userChrome.css
-user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
-
-/*
- * set startup page:
- *    0 = blank
- *    1 = home
- *    2 = last visited page
- *    3 = resume previous session
+//
+/* You may copy+paste this file and use it as it is.
+ *
+ * If you make changes to your about:config while the program is running, the
+ * changes will be overwritten by the user.js when the application restarts.
+ *
+ * To make lasting changes to preferences, you will have to edit the user.js.
  */
-user_pref("browser.startup.page", 1);
-user_pref("browser.startup.homepage", "about:home");
 
-// disable activity stream on new windows and tab pages
-user_pref("browser.newtabpage.enabled", false);
-user_pref("browser.newtab.preload", true);
-user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false); // disable telemetry
-user_pref("browser.newtabpage.activity-stream.telemetry", false); // disable telemetry
-user_pref("browser.newtabpage.activity-stream.feeds.snippets", false);
-user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
-user_pref(
-  "browser.newtabpage.activity-stream.section.highlights.includePocket",
-  false
-);
-user_pref(
-  "browser.newtabpage.activity-stream.feeds.discoverystreamfeed",
-  false
-);
-user_pref("browser.newtabpage.activity-stream.showSponsored", false); // Pocket -> Sponsored Stories
-user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // Sponsored Shortcuts
-user_pref("browser.newtabpage.activity-stream.default.sites", "");
+/****************************************************************************
+ * Betterfox                                                                *
+ * "Ad meliora"                                                             *
+ * version: 140                                                             *
+ * url: https://github.com/yokoffing/Betterfox                              *
+ ****************************************************************************/
 
-/*********************************************************************
- * Geolocation
- *********************************************************************/
+/****************************************************************************
+ * SECTION: FASTFOX                                                         *
+ ****************************************************************************/
+/** GENERAL ***/
+user_pref("content.notify.interval", 100000);
 
-// use Mozilla geolocation service instead of Google if permission is granted
-user_pref(
-  "geo.provider.network.url",
-  "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%"
-);
+/** GFX ***/
+user_pref("gfx.canvas.accelerated.cache-size", 1024);
+user_pref("gfx.content.skia-font-cache-size", 64);
 
-// disable using the OS’s geolocation service
-//user_pref("geo.provider.ms-windows-location", false); // Windows
-//user_pref("geo.provider.use_corelocation", false);    // macOS
-user_pref("geo.provider.use_gpsd", false); // Linux
-user_pref("geo.provider.use_geoclue", false); // Linux
+/** DISK CACHE ***/
+user_pref("browser.cache.disk.enable", false);
 
-// disable region updates
-user_pref("browser.region.network.url", "");
-user_pref("browser.region.update.enabled", false);
+/** MEMORY CACHE ***/
+user_pref("browser.sessionhistory.max_total_viewers", 12);
 
-/*********************************************************************
- * Language / Locale
- *********************************************************************/
+/** PROCESSES **/
+user_pref("dom.ipc.processCount", 16);
+user_pref("dom.ipc.processCount.web", 12);
 
-// set language for displaying web pages:
-user_pref("intl.accept_languages", "en-US, en");
-user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
+/** MEDIA CACHE ***/ // memmory hog settings :) (only activate if you have ram to throw around)
+user_pref("media.memory_cache_max_size", 131072); // 128 MB
+user_pref("media.cache_readahead_limit", 7200); // 2hrs
+user_pref("media.cache_resume_threshold", 3600); // 1hr
 
-/*********************************************************************
- * Auto-updates / Recommendations
- *********************************************************************/
+/** IMAGE CACHE ***/
+user_pref("image.mem.decode_bytes_at_a_time", 32768);
 
-// disable auto-installing Firefox updates
-//user_pref("app.update.background.scheduling.enabled", false); // Windows
-user_pref("app.update.auto", false); // Non-Windows
+/** NETWORK ***/
+user_pref("network.http.max-connections", 1800);
+user_pref("network.http.max-persistent-connections-per-server", 10);
+user_pref("network.http.max-urgent-start-excessive-connections-per-host", 5);
+user_pref("network.http.pacing.requests.enabled", false);
+user_pref("network.dnsCacheExpiration", 3600);
+user_pref("network.ssl_tokens_cache_capacity", 10240);
 
-// disable addons recommendations (use Google Analytics)
-user_pref("extensions.getAddons.showPane", false); // [HIDDEN PREF]
-user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
-user_pref("browser.discovery.enabled", false);
+/** SPECULATIVE LOADING ***/
+user_pref("network.http.speculative-parallel-limit", 0);
+user_pref("network.dns.disablePrefetch", true);
+user_pref("network.dns.disablePrefetchFromHTTPS", true);
+user_pref("browser.urlbar.speculativeConnect.enabled", false);
+user_pref("browser.places.speculativeConnect.enabled", false);
+user_pref("network.prefetch-next", false);
+user_pref("network.predictor.enabled", false);
 
-/*********************************************************************
- * Telemetry
- *********************************************************************/
+/** EXPERIMENTAL ***/
+user_pref("layout.css.grid-template-masonry-value.enabled", true);
 
-// disable telemetry
+/****************************************************************************
+ * SECTION: SECUREFOX                                                       *
+ ****************************************************************************/
+/** TRACKING PROTECTION ***/
+user_pref("browser.contentblocking.category", "strict");
+user_pref("browser.download.start_downloads_in_tmp_dir", true);
+user_pref("browser.helperApps.deleteTempFileOnExit", true);
+user_pref("browser.uitour.enabled", false);
+user_pref("privacy.globalprivacycontrol.enabled", true);
+
+/** OCSP & CERTS / HPKP ***/
+user_pref("security.OCSP.enabled", 0);
+user_pref("security.pki.crlite_mode", 2);
+
+/** SSL / TLS ***/
+user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
+user_pref("browser.xul.error_pages.expert_bad_cert", true);
+user_pref("security.tls.enable_0rtt_data", false);
+
+/** DISK AVOIDANCE ***/
+user_pref("browser.privatebrowsing.forceMediaMemoryCache", true);
+user_pref("browser.sessionstore.interval", 60000);
+
+/** SHUTDOWN & SANITIZING ***/
+user_pref("browser.privatebrowsing.resetPBM.enabled", true);
+user_pref("privacy.history.custom", true);
+
+/** SEARCH / URL BAR ***/
+user_pref("browser.urlbar.trimHttps", true);
+user_pref("browser.urlbar.untrimOnUserInteraction.featureGate", true);
+user_pref("browser.search.separatePrivateDefault.ui.enabled", true);
+user_pref("browser.search.suggest.enabled", false);
+user_pref("browser.urlbar.quicksuggest.enabled", false);
+user_pref("browser.urlbar.groupLabels.enabled", false);
+user_pref("browser.formfill.enable", false);
+user_pref("network.IDN_show_punycode", true);
+
+/** PASSWORDS ***/
+user_pref("signon.formlessCapture.enabled", false);
+user_pref("signon.privateBrowsingCapture.enabled", false);
+user_pref("network.auth.subresource-http-auth-allow", 1);
+user_pref("editor.truncate_user_pastes", false);
+
+/** MIXED CONTENT + CROSS-SITE ***/
+user_pref("security.mixed_content.block_display_content", true);
+user_pref("pdfjs.enableScripting", false);
+
+/** EXTENSIONS ***/
+user_pref("extensions.enabledScopes", 5);
+
+/** HEADERS / REFERERS ***/
+user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
+
+/** CONTAINERS ***/
+user_pref("privacy.userContext.ui.enabled", true);
+
+/** SAFE BROWSING ***/
+user_pref("browser.safebrowsing.downloads.remote.enabled", false);
+
+/** MOZILLA ***/
+user_pref("permissions.default.desktop-notification", 2);
+user_pref("permissions.default.geo", 2);
+user_pref("geo.provider.network.url", "https://beacondb.net/v1/geolocate");
+user_pref("browser.search.update", false);
+user_pref("permissions.manager.defaultsUrl", "");
+user_pref("extensions.getAddons.cache.enabled", false);
+
+/** TELEMETRY ***/
 user_pref("datareporting.policy.dataSubmissionEnabled", false);
 user_pref("datareporting.healthreport.uploadEnabled", false);
-user_pref("toolkit.telemetry.enabled", false); // Default: false
 user_pref("toolkit.telemetry.unified", false);
+user_pref("toolkit.telemetry.enabled", false);
 user_pref("toolkit.telemetry.server", "data:,");
 user_pref("toolkit.telemetry.archive.enabled", false);
 user_pref("toolkit.telemetry.newProfilePing.enabled", false);
@@ -93,377 +141,128 @@ user_pref("toolkit.telemetry.shutdownPingSender.enabled", false);
 user_pref("toolkit.telemetry.updatePing.enabled", false);
 user_pref("toolkit.telemetry.bhrPing.enabled", false);
 user_pref("toolkit.telemetry.firstShutdownPing.enabled", false);
-user_pref("toolkit.telemetry.coverage.opt-out", true); // [HIDDEN PREF]
-user_pref("toolkit.coverage.opt-out", true); // [HIDDEN PREF]
-user_pref("toolkit.coverage.endpoint.base.", "");
-user_pref("browser.ping-centre.telemetry", false);
-user_pref("beacon.enabled", false);
+user_pref("toolkit.telemetry.coverage.opt-out", true);
+user_pref("toolkit.coverage.opt-out", true);
+user_pref("toolkit.coverage.endpoint.base", "");
+user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
+user_pref("browser.newtabpage.activity-stream.telemetry", false);
+user_pref("datareporting.usage.uploadEnabled", false);
 
-/*********************************************************************
- * Studies
- *********************************************************************/
-
-// disable studies
+/** EXPERIMENTS ***/
 user_pref("app.shield.optoutstudies.enabled", false);
-
-// disable normandy/shield
 user_pref("app.normandy.enabled", false);
 user_pref("app.normandy.api_url", "");
 
-/*********************************************************************
- * Crash Reports
- *********************************************************************/
-
-// disable crash reports
+/** CRASH REPORTS ***/
 user_pref("breakpad.reportURL", "");
 user_pref("browser.tabs.crashReporting.sendReport", false);
 
-/*********************************************************************
- * Captive Portal Detection / Network Checks
- *********************************************************************/
-
-// disable captive portal detection
-user_pref("captivedetect.canonicalURL", "");
-user_pref("network.captive-portal-service.enabled", false);
-
-// disable network connections checks
-user_pref("network.connectivity-service.enabled", false);
-
-/*********************************************************************
- * Safe Browsing
- *********************************************************************/
-
-// disable safe browsing service
-user_pref("browser.safebrowsing.malware.enabled", false);
-user_pref("browser.safebrowsing.phishing.enabled", false);
-
-// disable list of blocked URI
-user_pref("browser.safebrowsing.blockedURIs.enabled", false);
-
-// disable fetch of updates
-user_pref("browser.safebrowsing.provider.google4.gethashURL", "");
-user_pref("browser.safebrowsing.provider.google4.updateURL", "");
-user_pref("browser.safebrowsing.provider.google.gethashURL", "");
-user_pref("browser.safebrowsing.provider.google.updateURL", "");
-user_pref("browser.safebrowsing.provider.google4.dataSharingURL", "");
-
-// disable checks for downloads
-user_pref("browser.safebrowsing.downloads.enabled", false);
-user_pref("browser.safebrowsing.downloads.remote.enabled", false);
-user_pref("browser.safebrowsing.downloads.remote.url", "");
-
-// disable checks for unwanted software
+/****************************************************************************
+ * SECTION: PESKYFOX                                                        *
+ ****************************************************************************/
+/** MOZILLA UI ***/
+user_pref("browser.privatebrowsing.vpnpromourl", "");
+user_pref("extensions.getAddons.showPane", false);
+user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
+user_pref("browser.discovery.enabled", false);
+user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref(
-  "browser.safebrowsing.downloads.remote.block_potentially_unwanted",
-  false
+  "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons",
+  false,
 );
-user_pref("browser.safebrowsing.downloads.remote.block_uncommon", false);
+user_pref(
+  "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features",
+  false,
+);
+user_pref("browser.preferences.moreFromMozilla", false);
+user_pref("browser.aboutConfig.showWarning", false);
+user_pref("browser.aboutwelcome.enabled", false);
+user_pref("browser.profiles.enabled", true);
 
-// disable bypasses the block of safe browsing with a click for current session
-user_pref("browser.safebrowsing.allowOverride", false);
+/** THEME ADJUSTMENTS ***/
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+user_pref("browser.compactmode.show", true);
+user_pref("browser.privateWindowSeparation.enabled", false); // WINDOWS
 
-/*********************************************************************
- * Network: DNS, Proxy, IPv6
- *********************************************************************/
+/** FULLSCREEN NOTICE ***/
+user_pref("full-screen-api.transition-duration.enter", "0 0");
+user_pref("full-screen-api.transition-duration.leave", "0 0");
+user_pref("full-screen-api.warning.timeout", 0);
 
-// disable link prefetching
-//user_pref("network.prefetch-next", false);
+/** URL BAR ***/
+user_pref("browser.urlbar.unitConversion.enabled", true);
+user_pref("browser.urlbar.trending.featureGate", false);
 
-// disable DNS prefetching
-//user_pref("network.dns.disablePrefetch", true);
+/** NEW TAB PAGE ***/
+user_pref("browser.newtabpage.activity-stream.default.sites", "");
+user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
+user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
+user_pref("browser.newtabpage.activity-stream.showSponsored", false);
 
-// disable predictor / prefetching
-//user_pref("network.predictor.enabled", false);
-
-// disable link-mouseover opening connection to linked server
-user_pref("network.http.speculative-parallel-limit", 0);
-
-// disable mousedown speculative connections on bookmarks and history
-user_pref("browser.places.speculativeConnect.enabled", false);
-
-// disable IPv6
-user_pref("network.dns.disableIPv6", true);
-
-// disable "GIO" protocols as a potential proxy bypass vectors
-user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
-
-// disable using UNC (Uniform Naming Convention) paths (prevent proxy bypass)
-user_pref("network.file.disable_unc_paths", true); // [HIDDEN PREF]
-
-// remove special permissions for certain mozilla domains
-user_pref("permissions.manager.defaultsUrl", "");
-
-// use Punycode in Internationalized Domain Names to eliminate possible spoofing
-user_pref("network.IDN_show_punycode", true);
-
-/*********************************************************************
- * Search Bar: Suggestions, Autofill
- *********************************************************************/
-
-// disable search suggestions
-//user_pref("browser.search.suggest.enabled", false);
-//user_pref("browser.urlbar.suggest.searches", false);
-
-// disable location bar domain guessing
-user_pref("browser.fixup.alternate.enabled", false);
-
-// display all parts of the url in the bar
-user_pref("browser.urlbar.trimURLs", false);
-
-// disable location bar making speculative connections
-user_pref("browser.urlbar.speculativeConnect.enabled", false);
-
-// disable form autofill
-user_pref("browser.formfill.enable", false); // form history
-user_pref("extensions.formautofill.addresses.enabled", false);
-user_pref("extensions.formautofill.available", "off");
-user_pref("extensions.formautofill.creditCards.available", false);
-user_pref("extensions.formautofill.creditCards.enabled", false);
-user_pref("extensions.formautofill.heuristics.enabled", false);
-
-// disable location bar contextual suggestions:
-//user_pref("browser.urlbar.quicksuggest.scenario", "history");
-//user_pref("browser.urlbar.quicksuggest.enabled", false);
-user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
-user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
-
-/*********************************************************************
- * Passwords
- *********************************************************************/
-
-// disable saving passwords
-user_pref("signon.rememberSignons", false);
-
-// disable autofill login and passwords
-user_pref("signon.autofillForms", false);
-
-// disable formless login capture for Password Manager
-user_pref("signon.formlessCapture.enabled", false);
-
-/*
- * hardens against potential credentials phishing:
- *    0 = don't allow sub-resources to open HTTP authentication credentials dialogs
- *    1 = don't allow cross-origin sub-resources to open HTTP authentication credentials dialogs
- *    2 = allow sub-resources to open HTTP authentication credentials dialogs (default)
- */
-user_pref("network.auth.subresource-http-auth-allow", 1);
-
-/*********************************************************************
- * HTTPS / SSL/TLS / OSCP / CERTS
- *********************************************************************/
-
-// enable HTTPS-Only mode in all windows
-user_pref("dom.security.https_only_mode", true);
-
-// disable sending HTTP request for checking HTTPS support by the server
-user_pref("dom.security.https_only_mode_send_http_background_request", false);
-
-// display advanced information on Insecure Connection warning pages
-user_pref("browser.xul.error_pages.expert_bad_cert", true);
-
-// disable TLS 1.3 0-RTT (round-trip time)
-user_pref("security.tls.enable_0rtt_data", false);
-
-// set OCSP to terminate the connection when a CA isn't validate
-user_pref("security.OCSP.require", true);
-
-// disable SHA-1 certificates
-user_pref("security.pki.sha1_enforcement_level", 1);
-
-/*
- * enable strict pinning (PKP (Public Key Pinning)):
- *    0 = disabled
- *    1 = allow user MiTM (i.e. your Antivirus)
- *    2 = strict
- */
-//user_pref("security.cert_pinning.enforcement_level", 2);
-
-/*
- * enable CRLite
- *    0 = disabled
- *    1 = consult CRLite but only collect telemetry (default)
- *    2 = consult CRLite and enforce both "Revoked" and "Not Revoked" results
- *    3 = consult CRLite and enforce "Not Revoked" results, but defer to OCSP for "Revoked"
- */
-user_pref("security.remote_settings.crlite_filters.enabled", true);
-user_pref("security.pki.crlite_mode", 2);
-
-/*********************************************************************
- * Headers / Referers
- *********************************************************************/
-
-/*
- * control when to send a referer:
- *    0 = always (default)
- *    1 = only if base domains match
- *    2 = only if hosts match
- */
-user_pref("network.http.referer.XOriginPolicy", 2);
-
-/*
- * control amount of information to send:
- *    0 = send full URI (default):  https://example.com:8888/foo/bar.html?id=1234
- *    1 = scheme+host+port+path:    https://example.com:8888/foo/bar.html
- *    2 = scheme+host+port:         https://example.com:8888
- */
-user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
-
-/*********************************************************************
- * Audio/Video: WebRTC, WebGL
- *********************************************************************/
-
-// disable WebRTC
-//user_pref("media.peerconnection.enabled", true);
-
-// force WebRTC inside the proxy
-//user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true);
-
-// force a single network interface for ICE candidates generation
-//user_pref("media.peerconnection.ice.default_address_only", true);
-
-// force exclusion of private IPs from ICE candidates
-//user_pref("media.peerconnection.ice.no_host", true);
-
-// disable WebGL (Web Graphics Library):
-//user_pref("webgl.disabled", false);
-
-/*
- * disable autoplay of HTML5 media, You can set exceptions under site
- * permissions.
- *    0 = allow all
- *    1 = block non-muted media (default)
- *    5 = block all
- */
-//user_pref("media.autoplay.default", 5);
-
-// disable DRM Content
-//user_pref("media.eme.enabled", false);
-
-/*********************************************************************
- * Downloads
- *********************************************************************/
-
-// always ask you where to save files:
-user_pref("browser.download.useDownloadDir", true);
-user_pref("browser.download.manager.addToRecentDocs", true);
-
-/*********************************************************************
- * Cookies
- *********************************************************************/
-
-/*
- * enable ETP (Enhanced Tracking Protection)
- * ETP strict mode enables Total Cookie Protection (TCP)
- */
-//user_pref("browser.contentblocking.category", "strict");
-
-// enable state partitioning of service workers
-//user_pref("privacy.partition.serviceWorkers", true); // Default: true
-
-// enable APS (Always Partitioning Storage)
-//user_pref(
-//  "privacy.partition.always_partition_third_party_non_cookie_storage",
-//  true
-//);
-//user_pref(
-//  "privacy.partition.always_partition_third_party_non_cookie_storage.exempt_sessionstorage",
-//  false
-//);
-
-/*********************************************************************
- * UI Features
- *********************************************************************/
-
-// block popup windows
-//user_pref("dom.disable_open_during_load", true);
-
-// limit events that can cause a popup
-user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
-
-// disable Pocket extension
+/** POCKET ***/
 user_pref("extensions.pocket.enabled", false);
 
-// disable Screenshots extension
-user_pref("extensions.screenshots.disabled", true);
+/** DOWNLOADS ***/
+user_pref("browser.download.manager.addToRecentDocs", false);
 
-// disable PDFJS scripting
-user_pref("pdfjs.enableScripting", false);
+/** PDF ***/
+user_pref("browser.download.open_pdf_attachments_inline", true);
 
-// enable Containers and show the UI settings
-//user_pref("privacy.userContext.enabled", true);
-//user_pref("privacy.userContext.ui.enabled", true);
+/** TAB BEHAVIOR ***/
+user_pref("browser.bookmarks.openInTabClosesMenu", false);
+user_pref("browser.menu.showViewImageInfo", true);
+user_pref("findbar.highlightAll", true);
+user_pref("layout.word_select.eat_space_to_next_word", false);
 
-// prefers less animation
-user_pref("ui.prefersReducedMotion", 1);
+/****************************************************************************
+ * START: MY OVERRIDES                                                      *
+ ****************************************************************************/
+// visit https://github.com/yokoffing/Betterfox/wiki/Common-Overrides
+// visit https://github.com/yokoffing/Betterfox/wiki/Optional-Hardening
+// Enter your personal overrides below this line:
 
-/*********************************************************************
- * Extensions
- *********************************************************************/
+/** AUTO CACHE SIZE **/
+user_pref("browser.cache.memory.capacity", -1);
 
-/*
- * extensions are allowed to work on restricted domains, while their scope
- * is set to profile+applications.
- * See: https://mike.kaply.com/2012/02/21/understanding-add-on-scopes/
- */
-user_pref("extensions.enabledScopes", 5); // [HIDDEN PREF]
-user_pref("extensions.webextensions.restrictedDomains", "");
+/** NO FIREFOX ACCOUNT **/
+user_pref("identity.fxaccounts.enabled", false);
+user_pref("browser.aboutwelcome.enabled", false); // Welcome screen
+user_pref("identity.fxaccounts.toolbar.enabled", false); // Avatar in toolbar
+user_pref("browser.preferences.identity.enabled", false); // Remove Sync tab in about:preferences
 
-// Display always the installation prompt
-user_pref("extensions.postDownloadThirdPartyPrompt", false);
+/** Search Engine **/ // doesnt seem to work: https://bugzilla.mozilla.org/show_bug.cgi?id=1029148
+user_pref("browser.search.defaultenginename", "DuckDuckGo");
+user_pref("browser.search.selectedEngine", "DuckDuckGo");
 
-/*********************************************************************
- * Shutdown Settings
- *********************************************************************/
+/** DRM **/
+user_pref("media.eme.enabled", true);
+user_pref("media.gmp-widevinecdm.enabled", true);
 
-// clear history when Firefox closes
-//user_pref("network.cookie.lifetimePolicy", 0);
-//user_pref("privacy.sanitize.sanitizeOnShutdown", false);
-//user_pref("privacy.clearOnShutdown.cache", false);
-//user_pref("privacy.clearOnShutdown.cookies", false);
-//user_pref("privacy.clearOnShutdown.downloads", false);
-//user_pref("privacy.clearOnShutdown.formdata", true);
-//user_pref("privacy.clearOnShutdown.history", false);
-//user_pref("privacy.clearOnShutdown.offlineApps", true);
-//user_pref("privacy.clearOnShutdown.sessions", false);
-//user_pref("privacy.clearOnShutdown.sitesettings", false);
-//user_pref("privacy.sanitize.timeSpan", 0);
+/** Blank Pages **/
+user_pref("browser.startup.homepage", "about:blank");
+user_pref("browser.startup.page", 0);
+user_pref("browser.newtabpage.enabled", false);
+user_pref("browser.newtab.url", "about:blank");
 
-/*********************************************************************
- * Fingerprinting
- *********************************************************************/
+/** Vertical Tabs **/
+user_pref("sidebar.revamp", true);
+user_pref("sidebar.verticalTabs", true);
+user_pref("sidebar.visibility", "always-show");
+user_pref("sidebar.main.tools", "aichat,history,bookmarks");
+user_pref("sidebar.animation.enabled", false);
 
-/*
- * RFP (Resist Fingerprinting):
- *
- * can cause some website breakage: mainly canvas, use a site
- * exception via the urlbar.
- *
- * RFP also has a few side effects: mainly timezone is UTC0, and
- * websites will prefer light theme.
- * [1] https://bugzilla.mozilla.org/418986
- *
- * See: https://support.mozilla.org/en-US/kb/firefox-protection-against-fingerprinting
- */
-//user_pref("privacy.resistFingerprinting", true);
+/** TOOLBAR **/
+user_pref("browser.toolbar.bookmarks.visibility", "newtab");
 
-// set new window size rounding max values
-//user_pref("privacy.window.maxInnerWidth", 1600);
-//user_pref("privacy.window.maxInnerHeight", 900);
+/** userChrome **/
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
-// disable mozAddonManager Web API
-user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // [HIDDEN PREF]
+/****************************************************************************
+ * SECTION: SMOOTHFOX                                                       *
+ ****************************************************************************/
+// visit https://github.com/yokoffing/Betterfox/blob/main/Smoothfox.js
+// Enter your scrolling overrides below this line:
 
-//disable showing about:blank page when possible at startup
-user_pref("browser.startup.blankWindow", false);
-
-// use system colors
-user_pref("browser.display.use_system_colors", true);
-
-// save firefox network cache into ram
-user_pref("browser.cache.disk.enable", false);
-
-// disable webnotifications in general
-user_pref("dom.webnotifications.enabled", false);
-
-// vaapi
-user_pref("media.ffmpeg.vaapi.enabled", true);
+/****************************************************************************
+ * END: BETTERFOX                                                           *
+ ****************************************************************************/

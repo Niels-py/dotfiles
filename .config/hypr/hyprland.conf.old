@@ -1,0 +1,97 @@
+# vim:fileencoding=utf-8:syntax=config
+monitor=DP-1,3840x2160@60,1440x0,1
+monitor=HDMI-A-1,1920x1080@60,0x0,0.75,transform,1
+
+source = ./environment.conf
+source = ./execute.conf
+
+general {
+    gaps_in = 4
+    gaps_out = 8
+    border_size = 4
+    col.active_border = rgb(89b4fa) rgb(89dceb) rgb(a6e3a1) rgb(f9e2af) rgb(cba6f7) 45deg
+    col.inactive_border = rgb(313244)
+
+    layout = master
+
+    cursor_inactive_timeout = 20
+}
+
+decoration {
+    rounding = 8
+    
+    blur {
+        enabled = true
+        size = 5
+        passes = 3
+    }
+
+    drop_shadow = no
+}
+
+workspace = special:scratchpad,on-created-empty:alacritty
+workspace = 1,persistent:true,layoutopt:orientation:top,monitor:HDMI-A-1,default:true
+workspace = 2,persistent:true,layoutopt:orientation:top,monitor:HDMI-A-1
+workspace = 3,persistent:true,layoutopt:orientation:top,monitor:HDMI-A-1
+workspace = 4,persistent:true,layoutopt:orientation:top,monitor:HDMI-A-1
+workspace = 5,persistent:true,layoutopt:orientation:top,monitor:HDMI-A-1
+workspace = 6,persistent:true,layoutopt:orientation:left,monitor:DP-1,default:true
+workspace = 7,persistent:true,layoutopt:orientation:left,monitor:DP-1
+workspace = 8,persistent:true,layoutopt:orientation:left,monitor:DP-1
+workspace = 9,persistent:true,layoutopt:orientation:left,monitor:DP-1
+workspace = 10,persistent:true,layoutopt:orientation:left,monitor:DP-1
+
+
+animations {
+    enabled = yes
+
+    # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
+
+    bezier = easeInOut, 0.645, 0.045, 0.355, 1 
+    bezier = OutOvershot, 0.175, 0.885, 0.32, 1.275
+    bezier = straight, .5,.5,.5,.5 
+
+    animation = windowsIn, 1, 2, easeInOut
+    animation = windowsMove, 1, 2, easeInOut
+    animation = windowsOut, 1, 4, default, popin 80%
+    animation = border, 1, 2, default
+    animation = borderangle, 1, 128, straight, loop
+    animation = fade, 1, 4, default
+    # animation = workspaces, 1, 4, OutOvershot, slidefadevert
+    animation = workspaces, 0
+    animation = specialWorkspace, 1, 4, easeInOut, fade
+}
+
+input {
+    kb_layout = us
+    kb_variant = altgr-intl
+
+    repeat_rate = 40
+    repeat_delay = 250
+
+    follow_mouse = 1
+}
+
+misc {
+    force_default_wallpaper = -1
+    disable_splash_rendering = true
+    disable_hyprland_logo = true
+    mouse_move_enables_dpms = true
+    key_press_enables_dpms = true
+    background_color = rgb(30, 30, 46)
+}
+
+master {
+    allow_small_split = true
+    special_scale_factor = 0.8
+    mfact = 0.5
+    new_is_master = true
+    new_on_top = true
+    no_gaps_when_only = 0
+    inherit_fullscreen = true
+    always_center_master = false
+    smart_resizing = false
+    drop_at_cursor = false
+}
+
+source = ./keybinds.conf
