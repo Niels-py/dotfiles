@@ -57,7 +57,7 @@
         "max-length": 80,
     },
     "tray":{
-		"icon-size":18,
+		"icon-size":24,
 		"spacing": 10
 	},
     "clock": {
@@ -68,13 +68,13 @@
     },
     "cpu": {
         "interval": 1,
-        "format": " {}%",
+        "format": " {usage}%",
         "max-length": 10
     },
     "memory": {
         "interval": 1,
-        "format": " {}%",
-        "max-length": 10
+        "format": " {used}%",
+        "max-length": 16
     },
     "wireplumber": {
         "format": "{volume}% {icon}",

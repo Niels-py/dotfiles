@@ -5,51 +5,86 @@ kanshi &
 
 # ENVIRONMENT
 # =========================================
-export EDITOR=nvim
-export VISUAL=nvim
-export TERM=footclient
 
-# XDG
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_CACHE_HOME=$HOME/.cache
-export XDG_DATA_HOME=$HOME/.local/share
-export XDG_STATE_HOME=$HOME/.local/state
-export XDG_DATA_DIRS=/usr/local/share:/usr/share
-export XDG_CONFIG_DIRS=/etc/xdg
+# --- dirs
+XDG_CONFIG_HOME=$HOME/.config
+XDG_CACHE_HOME=$HOME/.cache
+XDG_DATA_HOME=$HOME/.local/share
+XDG_STATE_HOME=$HOME/.local/state
+XDG_DATA_DIRS=/usr/local/share:/usr/share
+XDG_CONFIG_DIRS=/etc/xdg
 
-export CARGO_HOME=$HOME/.local/share/cargo
-export RUSTUP_HOME=$HOME/.local/share/rustup
-export GRIM_DEFAULT_DIR=$HOME/Pictures/screenshots
-export GOPATH=$HOME/.local/share/go
-export OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models
+CARGO_HOME=$HOME/.local/share/cargo
+RUSTUP_HOME=$HOME/.local/share/rustup
+GRIM_DEFAULT_DIR=$HOME/Pictures/screenshots
+GOPATH=$HOME/.local/share/go
+OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models
 
-# themes
-export XCURSOR_THEME=Bibata-Modern-Classic
-export XCURSOR_SIZE=32
-export QT_QPA_PLATFORMTHEME=qt5ct
-export QT_AUTO_SCREEN_SCALE_FACTOR=1
-export QT_ENABLE_HIGHDPI_SCALING=1
-export QT_STYLE_OVERRIDE=kvantum
-export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-export GDK_SCALE=2
+# --- some programms
+EDITOR=nvim
+VISUAL=nvim
+TERM=footclient
 
-# wayland
+PAGER=less
+MANPAGER="nvim +Man!"
+
+BROWSER=firefox
+
+GCC_COLORS=auto
+CLICOLOR=1
+CARGO_TERM_COLOR=always
+
+LESS=-R
+LESSHISTFILE=-
+
+FZF_DEFAULT_OPTS=" --color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8,fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC,marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8,selected-bg:#45475A,border:#6C7086,label:#CDD6F4"
+
+# --- WAYLAND
 export MOZ_ENABLE_WAYLAND=1
-export WLR_RENDERER=vulkan
 export QT_QPA_PLATFORM=wayland
 export SDL_VIDEODRIVER=wayland
-export GDK_BACKEND='wayland,x11'
+export GDK_BACKEND=wayland,x11
 export ELECTRON_OZONE_PLATFORM_HINT=auto
+
+# setting some XDG stuff for better communication
 export XDG_CURRENT_DESKTOP=river
 export XDG_SESSION_DESKTOP=river
 export XDG_CURRENT_SESSION_TYPE=wayland
 export XDG_SESSION_TYPE=wayland
+
+# for systems without seatd (from systemd)
 export LIBSEAT_BACKEND=logind;
+
+export WLR_RENDERER=vulkan
+
+export XCURSOR_THEME=Bibata-Modern-Classic
+export XCURSOR_SIZE=32
+export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_STYLE_OVERRIDE=kvantum
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+
+# --- SCALING
+GDK_SCALE=2
+GDK_DPI_SCALE=0.5
+
+# QT
+QT_SCALE_FACTOR=1
+QT_AUTO_SCREEN_SCALE_FACTOR=1
+QT_USE_PHYSICAL_DPI=1
+QT_ENABLE_HIGHDPI_SCALING=1
+QT_WAYLAND_DISABLE_WINDOW_DECORATION=1
+
+# XWayland (fix blurry X11 apps)
+XWAYLAND_NO_GLAMOR=0
+
+# Electron fixes
+ELECTRON_DISABLE_GPU_SANDBOX=1
+ELECTRON_FORCE_DEVICE_SCALE_FACTOR=1
 
 
 # basic commmand
 # =========================================
-riverctl map normal Super+Shift E exit
+riverctl map normal Super M exit
 riverctl map normal Super Space toggle-float
 
 
@@ -201,23 +236,16 @@ riverctl rule-add -app-id 'float*' -title 'foo' float
 
 # EXECUTE
 # =========================================
-source '/home/niels/.local/share/cargo/env'
-
-killall pipewire
-pipewire &
 
 killall mpd
+killall playerctld
+killall mpd-mpris
 mpd &
-
-
-killall transmission-gtk
-nice -n -1 transmission-gtk -m &
+mpd-mpris &
+playerctld daemon
 
 killall syncthing
 syncthing --no-browser &
-
-killall mpDris2
-mpDris2 &
 
 killall blueman-applet
 blueman-applet &
@@ -228,7 +256,6 @@ playerctld daemon
 waybar &
 mako &
 foot -s &
-swww-daemon &
 
 # swayidle -w \
 #     timeout 1200 'notify-send "Swayidle" "going to sleep in 10min"' \

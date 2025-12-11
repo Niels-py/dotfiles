@@ -2,10 +2,11 @@
     "layer": "top",
     "include": "~/.config/waybar/modules.jsonc",
     "position": "top",
-    "height": 48,
+    "height": 56,
     "output": "DP-1",
-    "modules-left": ["river/tags", "river/window"],
-    "modules-right": [ "mpris", "tray", "wireplumber", "network", "memory", "cpu", "clock" ],
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    // "modules-center": ["mpris"],
+    "modules-right": [ "tray", "wireplumber", "network", "memory", "cpu", "clock"],
 
 }, {
     "layer": "top",
@@ -13,6 +14,8 @@
     "output": "HDMI-A-1",
     "height": 48,
     "position": "top",
-    "modules-left": ["river/tags", "river/window"],
+    "modules-left": ["hyprland/workspaces","hyprland/window" ],
+    "modules-center": [],
     "modules-right": ["clock"],
+
 }]

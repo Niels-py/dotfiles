@@ -2,7 +2,7 @@
 
 * {
   font-family: JetBrainsMono Nerd Font;
-  font-size: 22px;
+  font-size: 26px;
   padding: 0;
   margin: 0;
 }
@@ -47,31 +47,31 @@ window#waybar {
   }
 }
 
-#window {
+#workspaces {
+  color: @text;
+  background-color: @crust;
   padding: 0 1em;
-  margin: 8px 8px 0 4px;
+  margin: 8px 8px 0 8px;
 }
 
-#tags {
-  margin: 8px 4px 0 8px;
-  padding: 0;
+
+window#waybar.empty #window {
+  background-color: @transparent;
 }
 
-#tags button:hover {
-  background-color: @sky;
-  animation: blink 1s infinite;
+#workspaces button {
+  padding: 0 1em;
 }
-#tags button {
-  padding: 0 0.7em;
+#workspaces button.empty {
   color: @surface0;
 }
-#tags button.occupied {
-  color: @text;
+#workspaces button.visible {
+  color: @blue;
 }
-#tags button.focused {
+#workspaces button.active {
   color: @green;
 }
-#tags button.urgent {
+#workspaces button.urgent {
   color: @red;
   animation: blink 1s infinite;
 }
@@ -97,7 +97,7 @@ window#waybar {
 
 #network {
   color: @sapphire;
-  min-width: 400px;
+  min-width: 500px;
 }
 
 #network.disconnected {
@@ -117,6 +117,15 @@ window#waybar {
 #mpris {
   color: @teal;
   min-width: 100px;
+}
+#keyboard-state {
+  color: @yellow
+}
+#keyboard-state label {
+  color: @green
+}
+#keyboard-state label.locked {
+  color: @red
 }
 
 /* #temperature { */
