@@ -3,9 +3,9 @@ if status is-interactive
     alias rm 'trash-put'
 
     alias l "eza --icons --git --group --time-style '+%Y-%m-%d %H:%M' --long --almost-all --mounts"
-    alias lls "eza --icons --git --group --time-style '+%Y-%m-%d %H:%M' --long --almost-all --mounts --total-size"
     alias ls 'eza --icons'
     alias ll 'eza -1 --icons'
+    alias lls "eza --icons --git --group --time-style '+%Y-%m-%d %H:%M' --long --almost-all --mounts --total-size"
     alias la 'eza -1 --icons --almost-all'
     alias tree 'eza --tree --icons '
     alias treel 'eza --tree --icons --git --group --long --almost-all'
@@ -19,7 +19,6 @@ if status is-interactive
 --color=selected-bg:#45475A \
 --color=border:#6C7086,label:#CDD6F4"
 
-    set -x LS_COLORS $(vivid generate catppuccin-mocha)
     set -x MANPAGER "nvim -c 'Man!' -o -"
 
     alias ..='z ..'
