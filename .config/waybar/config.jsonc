@@ -2,17 +2,17 @@
     "layer": "top",
     "include": "~/.config/waybar/modules.jsonc",
     "position": "top",
-    "height": 48,
+    "height": 56,
     "output": "DP-1",
-    "modules-left": ["river/tags", "river/window"],
+    "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-right": [ "mpris", "tray", "wireplumber", "network", "memory", "cpu", "clock" ],
 
 }, {
     "layer": "top",
     "include": "~/.config/waybar/modules.jsonc",
     "output": "HDMI-A-1",
-    "height": 48,
+    "height": 56,
     "position": "top",
-    "modules-left": ["river/tags", "river/window"],
+    "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-right": ["clock"],
 }]

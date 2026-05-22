@@ -56,6 +56,14 @@
         "format": "{}",
         "max-length": 80,
     },
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": true,
+        "current-only": false,
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
     "tray":{
 		"icon-size":24,
 		"spacing": 10
@@ -86,12 +94,12 @@
         "max-volume": 100.0,
     },
     "mpris": {
-        "format": " {status_icon} {player_icon}{dynamic} ",
+        "format": " {status_icon} {player_icon}{title} ",
         // "interval": 1,
         // "dynamic-order": ["artist", "title", "position", "length"],
         "dynamic-order": ["artist", "title"],
         "dynamic-separator": " - ",
-        "title-len": 70,
+        "title-len": 30,
         "dynamic-importance-order": ["title", "position", "length", "artist", "album"],
         "on-click-middle": "playerctl play-pause",
         "status-icons": {

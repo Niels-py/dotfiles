@@ -1,0 +1,175 @@
+# .bashrc
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# Use bash-completion, if available
+[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
+    . /usr/share/bash-completion/bash_completion
+
+
+. "/home/niels/.local/share/cargo/env"
+
+source /opt/rocm_sdk_612/bin/env_rocm.sh
+
+
+#  ____  _           _     
+# | __ )(_)_ __   __| |___ 
+# |  _ \| | '_ \ / _` / __|
+# | |_) | | | | | (_| \__ \
+# |____/|_|_| |_|\__,_|___/
+                         
+# If there are multiple matches for completion, Tab should cycle through them
+bind 'TAB:menu-complete'
+# And Shift-Tab should cycle backwards
+bind '"\e[Z": menu-complete-backward'
+
+# Display a list of the matching files
+bind "set show-all-if-ambiguous on"
+
+# Perform partial (common) completion on the first Tab press, only start
+# cycling full results on the second Tab press (from bash version 5)
+bind "set menu-complete-display-prefix on"
+
+# Cycle through history based on characters already typed on the line
+bind '"\e[A":history-search-backward'
+bind '"\e[B":history-search-forward'
+
+# Keep Ctrl-Left and Ctrl-Right working when the above are used
+bind '"\e[1;5C":forward-word'
+bind '"\e[1;5D":backward-word'
+
+
+#     _    _ _                     
+#    / \  | (_) __ _ ___  ___  ___ 
+#   / _ \ | | |/ _` / __|/ _ \/ __|
+#  / ___ \| | | (_| \__ \  __/\__ \
+# /_/   \_\_|_|\__,_|___/\___||___/
+
+# file management
+alias l="lsd -lA --date relative"
+alias ll="lsd -l --date relative"
+alias ls="lsd"
+alias la="lsd -A"
+alias lsa="lsd -A"
+alias tree="lsd --tree"
+alias md="mkdir -p"
+alias rm="trash-put"
+
+# zoxide stuff
+alias ..="z .."
+alias ...="z ../.."
+alias ....="z ../../.."
+alias cd="z"
+
+# wireguard
+alias wg-up="sudo wg-quick up wg0"
+alias wg-down="sudo wg-quick down wg0"
+
+# python
+alias py="python3"
+alias venv=". ~/Documents/develop/venv/bin/activate"
+
+# downloads
+alias mdl="yt-dlp --embed-metadata --embed-thumbnail --embed-chapters --cookies-from-browser firefox -x --audio-format mp3 -f bestaudio -o '%(title)s.%(ext)s'"
+alias vdl="yt-dlp --format bestvideo+bestaudio --merge-output-format mkv --cookies-from-browser firefox --embed-subs --embed-metadata --sponsorblock-mark all -N 4 -o '%(title)s.%(ext)s'"
+
+# power
+alias poweroff="loginctl poweroff"
+alias reboot="loginctl reboot"
+alias zzz="loginctl suspend"
+alias ZZZ="loginctl hibernate"
+
+# no wget history file
+alias wget='wget --no-hsts'
+
+# program shortcuts
+alias imv='imv -u nearest_neighbour' # better for pixel art
+alias nv=nvim
+alias open=xdg-open
+
+
+#  _____                       _       
+# | ____|_  ___ __   ___  _ __| |_ ___ 
+# |  _| \ \/ / '_ \ / _ \| '__| __/ __|
+# | |___ >  <| |_) | (_) | |  | |_\__ \
+# |_____/_/\_\ .__/ \___/|_|   \__|___/
+#            |_|                       
+
+export HISTSIZE=10000
+export HISTFILESIZE=100000
+export HISTFILE="$XDG_STATE_HOME"/bash/history
+export INPUTRC=$XDG_CONFIG_HOME/readline/inputrc
+
+export FZF_DEFAULT_OPTS='--preview "bat --style=full --color=always {}" --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8,fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc,marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8'
+export FZF_DEFAULT_COMMAND="fd --type f"
+
+export LESSHISTFILE=-
+
+export EDITOR=nvim
+export VISUAL=nvim
+# export TERM=alacritty
+
+# XDG
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
+export XDG_DATA_DIRS=/usr/local/share/:/usr/share
+export XDG_CONFIG_DIRS=/etc/xdg
+
+# develop
+export CARGO_HOME=$HOME/.local/share/cargo
+export RUSTUP_HOME=$HOME/.local/share/rustup
+export GOPATH=$HOME/.local/share/go
+export PYTHON_HISTORY=$XDG_STATE_HOME/python_history
+export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
+export PYTHONUSERBASE=$XDG_DATA_HOME/python
+
+export OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models
+export GRIM_DEFAULT_DIR=$HOME/Pictures/screenshots
+
+# themes
+export XCURSOR_THEME=Bibata-Modern-Classic
+export XCURSOR_SIZE=32
+export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_STYLE_OVERRIDE=kvantum
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+export GDK_SCALE=2
+
+# wayland
+export MOZ_ENABLE_WAYLAND=1
+export WLR_RENDERER=vulkan
+export QT_QPA_PLATFORM=wayland
+export SDL_VIDEODRIVER=wayland
+export GDK_BACKEND=wayland
+export ELECTRON_OZONE_PLATFORM_HINT=auto
+
+
+#   ___  ____   ____ 
+#  / _ \/ ___| / ___|
+# | | | \___ \| |    
+# | |_| |___) | |___ 
+#  \___/|____/ \____|
+
+# osc compatability
+osc7_cwd() {
+    local strlen=${#PWD}
+    local encoded=""
+    local pos c o
+    for (( pos=0; pos<strlen; pos++ )); do
+        c=${PWD:$pos:1}
+        case "$c" in
+            [-/:_.!\'\(\)~[:alnum:]] ) o="${c}" ;;
+            * ) printf -v o '%%%02X' "'${c}" ;;
+        esac
+        encoded+="${o}"
+    done
+    printf '\e]7;file://%s%s\e\\' "${HOSTNAME}" "${encoded}"
+}
+
+PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }osc7_cwd
+
+# eval "$(zellij setup --generate-auto-start bash)"
+eval "$(starship init bash)"
+eval "$(zoxide init bash)"

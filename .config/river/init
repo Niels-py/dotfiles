@@ -7,40 +7,42 @@ kanshi &
 # =========================================
 
 # --- dirs
-XDG_CONFIG_HOME=$HOME/.config
-XDG_CACHE_HOME=$HOME/.cache
-XDG_DATA_HOME=$HOME/.local/share
-XDG_STATE_HOME=$HOME/.local/state
-XDG_DATA_DIRS=/usr/local/share:/usr/share
-XDG_CONFIG_DIRS=/etc/xdg
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
+export XDG_DATA_DIRS=/usr/local/share:/usr/share
+export XDG_CONFIG_DIRS=/etc/xdg
 
-CARGO_HOME=$HOME/.local/share/cargo
-RUSTUP_HOME=$HOME/.local/share/rustup
-GRIM_DEFAULT_DIR=$HOME/Pictures/screenshots
-GOPATH=$HOME/.local/share/go
-OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models
+export CARGO_HOME=$HOME/.local/share/cargo
+export RUSTUP_HOME=$HOME/.local/share/rustup
+export GRIM_DEFAULT_DIR=$HOME/Pictures/screenshots
+export GOPATH=$HOME/.local/share/go
+export OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models
 
 # --- some programms
-EDITOR=nvim
-VISUAL=nvim
-TERM=footclient
+export EDITOR=nvim
+export VISUAL=nvim
+export TERM=footclient
 
-PAGER=less
-MANPAGER="nvim +Man!"
+export PAGER=less
+export MANPAGER="nvim +Man!"
 
-BROWSER=firefox
+export BROWSER=firefox
 
-GCC_COLORS=auto
-CLICOLOR=1
-CARGO_TERM_COLOR=always
+export GCC_COLORS=auto
+export CLICOLOR=1
 
-LESS=-R
-LESSHISTFILE=-
+export CARGO_TERM_COLOR=always
+
+export LESS=-R
+export LESSHISTFILE=-
 
 # --- WAYLAND
 export MOZ_ENABLE_WAYLAND=1
 export QT_QPA_PLATFORM=wayland
-export SDL_VIDEODRIVER=wayland
+export SDL_VIDEODRIVER=wayland,x11
+export SDL_VIDEO_DRIVER=wayland,x11
 export GDK_BACKEND=wayland,x11
 export ELECTRON_OZONE_PLATFORM_HINT=auto
 
@@ -57,27 +59,28 @@ export WLR_RENDERER=vulkan
 
 export XCURSOR_THEME=Bibata-Modern-Classic
 export XCURSOR_SIZE=32
+export XCURSOR_PATH=/usr/share/icons:$HOME/.local/share/icons
 export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_STYLE_OVERRIDE=kvantum
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
 # --- SCALING
-GDK_SCALE=2
-GDK_DPI_SCALE=0.5
+export GDK_SCALE=1
+export GDK_DPI_SCALE=1.33
 
 # QT
-QT_SCALE_FACTOR=1
-QT_AUTO_SCREEN_SCALE_FACTOR=1
-QT_USE_PHYSICAL_DPI=1
-QT_ENABLE_HIGHDPI_SCALING=1
-QT_WAYLAND_DISABLE_WINDOW_DECORATION=1
+export QT_SCALE_FACTOR=1
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export QT_USE_PHYSICAL_DPI=1
+export QT_ENABLE_HIGHDPI_SCALING=1
+export QT_WAYLAND_DISABLE_WINDOW_DECORATION=1
 
 # XWayland (fix blurry X11 apps)
-XWAYLAND_NO_GLAMOR=0
+export XWAYLAND_NO_GLAMOR=0
 
 # Electron fixes
-ELECTRON_DISABLE_GPU_SANDBOX=1
-ELECTRON_FORCE_DEVICE_SCALE_FACTOR=1
+export ELECTRON_DISABLE_GPU_SANDBOX=1
+export ELECTRON_FORCE_DEVICE_SCALE_FACTOR=1
 
 
 # basic commmand
@@ -89,11 +92,9 @@ riverctl map normal Super Space toggle-float
 # spawn programms
 # =========================================
 riverctl map normal Super Return spawn $TERM
-riverctl map normal Super W spawn firefox
-riverctl map normal Super+Shift W spawn 'firefox --private-window'
+riverctl map normal Super W spawn 'GDK_DPI_SCALE=1.33 firefox'
+riverctl map normal Super+Shift W spawn 'GDK_DPI_SCALE=1.33 firefox --private-window'
 riverctl map normal Super R spawn fuzzel
-riverctl map normal Super E spawn thunar
-riverctl map normal Super O spawn obsidian
 
 
 # window commands
@@ -194,7 +195,7 @@ riverctl map normal None XF86AudioNext spawn 'playerctl next'
 riverctl map normal Super S spawn 'grim -g "$(slurp)" - | wl-copy'
 
 # Tesseract text copy
-riverctl map normal Super T spawn 'grim -g "$(slurp)" - | tesseract-ocr -l eng+deu stdin stdout | wl-copy'
+riverctl map normal Super T spawn 'grim -g "$(slurp)" - | tesseract -l eng+deu stdin stdout 2>/dev/null | wl-copy'
 
 # open wl-paste in nvim
 riverctl map normal Super N spawn "wl-paste > /tmp/cfn.txt && $TERM -e nvim /tmp/cfn.txt"
@@ -206,14 +207,14 @@ riverctl map normal Super C spawn "cliphist list | fuzzel -d | cut -d ' ' -f 1 |
 # =========================================
 riverctl background-color 0x11111b
 riverctl border-color-focused 0xcba6f7
-jiverctl border-color-unfocused 0x313244
+riverctl border-color-unfocused 0x313244
 riverctl border-color-urgent 0xf38ba8
 riverctl border-width 4
 
 
 # Keyboard
 # =========================================
-riverctl set-repeat 50 300
+riverctl set-repeat 50 250
 riverctl keyboard-layout -variant altgr-intl us
 
 
@@ -235,35 +236,23 @@ riverctl rule-add -app-id 'float*' -title 'foo' float
 # EXECUTE
 # =========================================
 
-killall mpd
 killall playerctld
-killall mpd-mpris
-mpd &
-mpd-mpris &
 playerctld daemon
 
-killall syncthing
-syncthing --no-browser &
-
-killall blueman-applet
-blueman-applet &
+# killall blueman-applet
+# blueman-applet &
 
 cliphist wipe
 wl-paste --watch cliphist store &
-playerctld daemon
 waybar &
 mako &
 foot -s &
+awww-daemon &
 
 # swayidle -w \
 #     timeout 1200 'notify-send "Swayidle" "going to sleep in 10min"' \
 #     timeout 1800 'zzz' &
 
-# set cursor theme
-# gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Classic
-# gsettings set org.gnome.desktop.interface cursor-size 32
-#
-# isn't needed when gtk-4.0 prefer dark mode on is
 
 # Layout generator
 # =========================================

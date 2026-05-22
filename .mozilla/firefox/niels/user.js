@@ -168,11 +168,11 @@ user_pref("browser.discovery.enabled", false);
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref(
   "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons",
-  false,
+  false
 );
 user_pref(
   "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features",
-  false,
+  false
 );
 user_pref("browser.preferences.moreFromMozilla", false);
 user_pref("browser.aboutConfig.showWarning", false);
